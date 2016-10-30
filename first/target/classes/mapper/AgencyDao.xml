@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.extra.first.dao.AgencyDao">
+    <select id="queryAgenciesByCityId" resultType="com.extra.first.pojo.Agency">
+        select id,agency_name,agency_address,connect_phone,create_time
+        from t_agency where city_id = #{cityId} limit #{offset},#{limit};
+    </select>
+</mapper>

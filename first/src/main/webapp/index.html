@@ -1,0 +1,39 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--<%@ page contentType="text/html;charset=UTF-8" language="java" %>-->
+<!--<%@include file="/WEB-INF/view/common/tag.jsp" %>-->
+<head>
+    <!--<%@include file="/WEB-INF/view/common/head.jsp" %>-->
+</head>
+<body>
+<h2>测试</h2>
+
+<form class="add" action="/front/order/add?channelId=1" method="post">
+    <input type="text" class="form-control" name="userName" id="userName" placeholder="用户名">
+    <input type="text" class="form-control" id="userPhone" name="userPhone" placeholder="联系电话">
+    <input type="radio" name="userSex" value="0" checked="checked">男
+    <input type="radio" name="userSex" value="1">女
+    <select class="form-control" name="provinceId">
+        <option value="1">北京</option>
+        <option value="2">广东</option>
+    </select>
+    <select class="form-control" name="cityId">
+        <option value="1">深圳</option>
+        <option value="2">广州</option>
+    </select>
+    <select class="form-control" name="agencyId">
+        <option value="1">经销商1</option>
+        <option value="2">经销商2</option>
+    </select>
+    <select class="form-control" name="carTypeId">
+        <option value="1">suv1</option>
+        <option value="2">suv2</option>
+    </select>
+    <button type="submit" class="btn btn-default">提交</button>
+</form>
+
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.extra.first.dao.OrderDao">
+
+    <insert id="addOrder" parameterType="com.extra.first.pojo.Order">
+        insert into
+        t_order(user_name,user_phone,user_sex,agency_id,city_id,province_id,car_type_id,channel_id,create_time)
+        values(#{order.userName},#{order.userPhone},#{order.userSex},#{order.agencyId},#{order.cityId},#{order.provinceId},#{order.carTypeId},#{order.channelId},now());
+    </insert>
+
+    <select id="queryOrders" resultType="Order">
+        select
+        o.id,
+        o.user_name,
+        o.user_phone,
+        o.user_sex,
+        a.agency_name as 'agency.agencyName',
+        p.province_name as 'agency.city.province.provinceName',
+        c.city_name as 'agency.city.cityName',
+        car.name as 'car.cityName',
+        ch.name as 'channel.name',
+        ch.url as 'channel.url',
+        o.create_time
+        from t_order o
+        join t_agency a on o.agency_id = a.id
+        join t_city c on o.city_id = c.id
+        join t_province p on o.province_id = p.id
+        join t_car car on car.id = o.car_type_id
+        join t_channel ch on o.channel_id = ch.id
+        <where>
+            <if test="userName != null">
+                o.user_name like concate('%',#{userName},'%')
+            </if>
+            <if test="phone != null">
+                and o.user_phone = #{phone}
+            </if>
+            <if test="agencyId >0 ">
+                and o.agency_id = #{anencyId}
+            </if>
+            <if test="cityId>0">
+                and o.city_id = #{cityId}
+            </if>
+            <if test="provinceId > 0 ">
+                and o.province_id = #{provinceId}
+            </if>
+            <if test="channelId > 0 ">
+                and o.channel_id = #{channlId}
+            </if>
+            <if test="carTypeId > 0 ">
+                and o.car_type_id = #{carTypeId}
+            </if>
+        </where>
+        limit #{offset},#{limit};
+    </select>
+
+    <delete id="delOrderById">
+        delete from t_order where id=#{id};
+    </delete>
+
+    <update id="updateOrder">
+        update t_order
+        <set>
+            <if test="userName != null ">
+                user_name = #{userName}
+            </if>
+            <if test="userPhone != null">
+                user_phone = #{userPhone}
+            </if>
+            <if test="sex &gt; 0">
+                user_sex = #{sex}
+            </if>
+            <if test="agencyId &gt;0">
+                agency_id = #{agencyId}
+            </if>
+            <if test="cityId &gt;0">
+                city_id = #{cityId}
+            </if>
+            <if test="provinceId &gt;0">
+                province_id = #{provinceId}
+            </if>
+            <if test="carTypeId &gt; 0">
+                car_type_id = #{carTypeId}
+            </if>
+            <if test="status &gt; 0">
+                status = #{status}
+            </if>
+
+        </set>
+        where id=#{id}
+    </update>
+
+</mapper>
