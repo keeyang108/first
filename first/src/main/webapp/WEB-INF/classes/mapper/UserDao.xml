@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.extra.first.dao.UserDao">
+    <insert id="insertUser">
+        insert ignore into t_users(user_name,phone,sex) VALUES (#{userName},#{phone},#{sex});
+    </insert>
+
+    <select id="listUser" resultType="com.extra.first.pojo.User">
+        select id,user_name,phone,sex from t_users
+        <where>
+            <if test="userName != null ">
+                user_name = #{userName}
+            </if>
+            <if test="phone != null">
+                and phone = #{phone}
+            </if>
+        </where>
+        limit #{offset},#{limit};
+    </select>
+</mapper>

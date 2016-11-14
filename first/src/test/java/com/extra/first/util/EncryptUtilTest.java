@@ -17,7 +17,9 @@ public class EncryptUtilTest {
     Logger logger = LoggerFactory.getLogger(EncryptUtil.class);
     @Test
     public void MD5Encrypt() throws Exception {
-       String result =  EncryptUtil.MD5Encrypt("keeyang123456");
+       String result =  EncryptUtil.MD5Encrypt("123456");
+        logger.info(result);
+        System.out.println();
         logger.info(result.length()+"-"+result);
     }
 

@@ -8,13 +8,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -30,7 +32,17 @@ public class SupervisorController {
 
     @RequestMapping(value = "/user/add",method = RequestMethod.POST,produces = {"application/json;charset=utf-8"})
     @ResponseBody
-    public BaseResult<Object> addSupervisor(@ModelAttribute Supervisor supervisor){
+    public BaseResult<Object> addSupervisor(@ModelAttribute Supervisor supervisor, HttpServletRequest request, @RequestParam("textfile")CommonsMultipartFile upfile) throws IOException {
+
+        String path = request.getRealPath("/WEB-INF/upload");
+        File file = null;
+        if (!upfile.isEmpty()){
+            file =  new File(path,"head_"+upfile.getOriginalFilename());
+            byte[] bytes = upfile.getBytes();
+            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
+            bos.write(bytes);
+            bos.close();
+        }
 
         if (StringUtils.isEmpty(supervisor.getSupervisorName())){
             return new BaseResult<Object>(false,"用户名不能为空");
@@ -41,13 +53,18 @@ public class SupervisorController {
         if (StringUtils.isEmpty(supervisor.getPassword())){
             return new BaseResult<Object>(false,"请输入密码");
         }
-        supervisor.setPassword(supervisor.getPassword());
+        if (file != null){
+            System.out.println(file.getAbsolutePath());
+            System.out.println(file.getPath());
+            System.out.println(file.getName());
+            supervisor.setHeadImagePath(file.getPath());
+        }
+
         int row = supervisorService.addSupervisor(supervisor);
         if (row < 1 ){
             return new BaseResult<Object>(false,"Internal Error");
         }
         return new BaseResult<Object>(true,"添加成功");
-
     }
 
     @RequestMapping(value = "",method = RequestMethod.GET)
@@ -81,4 +98,10 @@ public class SupervisorController {
         return new BaseResult<Object>(true,"success");
     }
 
+    @RequestMapping(value = "/loginout",method = RequestMethod.PUT)
+    public String loginout(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.removeAttribute("user");
+        return "/supervisor/login";
+    }
 }

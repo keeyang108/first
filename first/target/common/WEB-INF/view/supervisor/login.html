@@ -12,7 +12,7 @@
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background: url(/WEB-INF/images/grass.jpg) no-repeat;
+            background: url(/sources/images/grass.jpg) no-repeat;
             font-size: 13px;
 
         }
@@ -25,7 +25,7 @@
             width: 468px;
             height: 468px;
             margin: 100px auto;
-            background: url(/WEB-INF/images/login_bg.png) no-repeat;
+            background: url(/sources/images/login_bg.png) no-repeat;
         }
 
         .lg_top {
@@ -51,7 +51,7 @@
             color: #666;
             width: 236px;
             margin: 4px 28px;
-            background: url(/WEB-INF/images/user.png) no-repeat;
+            background: url(/sources/images/user.png) no-repeat;
             padding-left: 10px;
             font-size: 16pt;
             font-family: Arial, Helvetica, sans-serif;
@@ -63,7 +63,7 @@
             color: #666;
             width: 236px;
             margin: 4px 28px;
-            background: url(/WEB-INF/images/password.png) no-repeat;
+            background: url(/sources/images/password.png) no-repeat;
             padding-left: 10px;
             font-size: 16pt;
             font-family: Arial, Helvetica, sans-serif;
@@ -72,7 +72,7 @@
         .bn {
             width: 330px;
             height: 72px;
-            background: url(/WEB-INF/images/enter.png) no-repeat;
+            background: url(/sources/images/enter.png) no-repeat;
             border: 0;
             display: block;
             font-size: 18px;
@@ -102,9 +102,16 @@
             </div>
         </div>
         <div class="lg_foot">
-            <input type="submit" value="Login In" class="bn"/></div>
+            <input type="button" value="Login In" class="bn"/></div>
     </form>
 </div>
 
 </body>
 </html>
+<script language="javascript" type="text/javascript">
+    $("#submitBut").post("/supervisor/home",data,function (result) {
+         if (result.success=='true'){
+
+         }
+    })
+</script>

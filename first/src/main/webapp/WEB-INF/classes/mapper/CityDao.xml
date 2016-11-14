@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.extra.first.dao.CityDao">
+
+    <insert id="addCity">
+        insert into t_city (province_id,city_name) values(#{provinceId},#{cityName});
+    </insert>
+
+    <select id="queryCityById" resultType="com.extra.first.pojo.City">
+        select
+        c.id,
+        c.city_name,
+        c.province_id,
+        p.id as 'province.id',
+        p.province_name as 'province.provinceName'
+        from t_city c join t_province p on c.province_id = p.id where c.id=#{cityId};
+    </select>
+
+    <select id="queryCitiesByProvinceId" resultType="City">
+        select id,province_id,city_name from t_city where province_id = #{provinceId} limit #{offset},#{limit};
+    </select>
+
+</mapper>

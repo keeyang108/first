@@ -4,6 +4,7 @@ import com.extra.first.pojo.Order;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Kee on 2016/10/23.
@@ -21,14 +22,12 @@ public interface OrderDao {
     /**
      * 根据条件查询相应记录：包括获取所有
      *
-     * @param agencyId
+     * @param order
      * @param offset
      * @param limit
      * @return
      */
-    List<Order> queryOrders(@Param("userName") String userName, @Param("phone") String phone, @Param("agencyId") int agencyId,
-                            @Param("channelId") int channelId, @Param("cityId") int cityId, @Param("provinceId") int provinceId,
-                            @Param("carTypeId") int carTypeId, @Param("offset") int offset, @Param("limit") int limit);
+    List<Map<String,Object>> queryOrders(@Param("order") Order order, @Param("offset") int offset, @Param("limit") int limit);
 
     /**
      * 根据Id删除记录

@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Kee on 2016/10/23.
@@ -31,9 +32,9 @@ public class OrderDaoTest {
 
     @Test
     public void queryOrders() throws Exception {
-        List<Order> orders = orderDao.queryOrders(null, null, 0, 0, 0, 0, 0, 0, 10);
-        for (Order order : orders) {
-            logger.info(order.toString());
+        List<Map<String,Object>> orders = orderDao.queryOrders(new Order(), 0, 10);
+        for (Map<String,Object> map : orders) {
+            logger.info(map.get("userName").toString());
         }
     }
 

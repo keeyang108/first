@@ -13,7 +13,6 @@ public interface ProvinceDao {
 
     /**
      * 添加省份
-     *
      * @param provinceName
      * @return
      */
@@ -21,7 +20,6 @@ public interface ProvinceDao {
 
     /**
      * 获取省份列表
-     *
      * @param offset
      * @param limit
      * @return
@@ -30,7 +28,6 @@ public interface ProvinceDao {
 
     /**
      * 根据Id查询对应记录
-     *
      * @param provinceId
      * @return
      */
@@ -38,7 +35,6 @@ public interface ProvinceDao {
 
     /**
      * 根据省份Id获取之下的城市
-     *
      * @param provinceId
      * @param offset
      * @param limit

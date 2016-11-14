@@ -10,8 +10,24 @@ import java.util.Map;
  */
 public interface SupervisorDao {
 
+    /**
+     * 添加管理员
+     * @param supervisor
+     * @return
+     */
     int addSupervisor(@Param("supervisor") Supervisor supervisor);
 
-//    Supervisor checkUser(@Param("supervisor") Supervisor supervisor);
+    /**
+     * 登陆校验及个人资料获取
+     * @param supervisor
+     * @return id,name,
+     */
     Map<String,Object> checkUser(@Param("supervisor") Supervisor supervisor);
+
+    /**
+     * 更新管理员资料
+     * @param supervisor
+     * @return
+     */
+    int updateSupervisor(@Param("supervisor") Supervisor supervisor);
 }

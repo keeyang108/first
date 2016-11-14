@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Kee on 2016/10/23.
@@ -33,20 +34,15 @@ public class OrderServiceImpl implements OrderService {
     /**
      * 查询订单
      *
-     * @param userName
-     * @param phone
-     * @param agencyId
-     * @param cityId
-     * @param channelId
-     * @param provinceId
-     * @param catTypeId
+     * @param order
      * @param offset
      * @param limit
      * @return
      */
-    public List<Order> queryOrders(String userName, String phone, int agencyId, int cityId, int channelId, int provinceId, int catTypeId, int offset, int limit) {
-        List<Order> orders = null;
-        orders = orderDao.queryOrders(userName, phone, agencyId, channelId, cityId, provinceId, catTypeId, offset, limit);
+    public List<Map<String,Object>> queryOrders(Order order, int offset, int limit) {
+        List<Map<String,Object>> orders = null;
+        orders = orderDao.queryOrders(order, offset, limit);
         return orders;
     }
+
 }
