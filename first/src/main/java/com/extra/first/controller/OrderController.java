@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -295,8 +296,9 @@ public class OrderController {
 
     @RequestMapping(value = "/list",method = RequestMethod.GET,produces = {"application/json;charset=utf-8"})
     @ResponseBody
-    public BaseResult<List<OrderDetail>> listOrder(@ModelAttribute OrderDetail orderDetail,Integer offset,Integer limit ){
+    public BaseResult<PageBean<OrderDetail>> listOrder(@ModelAttribute OrderDetail orderDetail,Integer offset,Integer limit ){
         List<OrderDetail> details = null;
+        int totalCount;
         if (orderDetail == null ){orderDetail = new OrderDetail();}
         if (offset == null || offset < 0 ){
            offset = 1;
@@ -304,11 +306,22 @@ public class OrderController {
         if (limit == null || limit < 0 ){
             limit =10;
         }
-
-        details = orderDetailService.listOrderDetails(orderDetail,(offset-1)*limit,limit);
-        if (details == null || details.size() < 1){
-            return new BaseResult<List<OrderDetail>>(false,"内部错误，请联系管理员");
+        try {
+            details = orderDetailService.listOrderDetails(orderDetail,(offset-1)*limit,limit);
+            totalCount = orderDetailService.countOrderDetails(orderDetail);
+        } catch (DataAccessException e) {
+            logger.error("***************获取预约订单失败，错误信息{}",e.getCause().getMessage());
+            return  new BaseResult<PageBean<OrderDetail>>(false,"内部错误，请联系管理员");
         }
-        return new BaseResult<List<OrderDetail>>(true,details);
+        if (details == null || details.size() < 1){
+            return new BaseResult<PageBean<OrderDetail>>(false,"内部错误，请联系管理员");
+        }
+        PageBean<OrderDetail> pageBean =  new PageBean<OrderDetail>();
+        pageBean.setCurrPage(offset);
+        pageBean.setPageSize(limit);
+        pageBean.setData(details);
+        pageBean.setTotalCount(totalCount);
+        pageBean.setTotalPage(totalCount/limit);
+        return new BaseResult<PageBean<OrderDetail>>(true,pageBean);
     }
 }

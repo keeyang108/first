@@ -17,4 +17,10 @@
         order by create_time desc
         limit #{offset},#{limit}
     </select>
+
+    <select id="countOrderDetails" resultType="java.util.Map">
+        select
+        COUNT(*) totalCount
+        from t_order_detail
+    </select>
 </mapper>
