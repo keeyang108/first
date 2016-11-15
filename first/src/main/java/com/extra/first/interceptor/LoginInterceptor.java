@@ -23,8 +23,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         logger.info("requestUri:{}",requestUri);
         logger.info("contextPath:{}",contextPath);
         logger.info("url:{}",url);
-
-        String userName = httpServletRequest.getSession().getAttribute("supervisor").toString();
+        Object userName = httpServletRequest.getSession().getAttribute("supervisor");
         if (userName == null){
             httpServletRequest.getRequestDispatcher("/WEB-INF/sign-in.html").forward(httpServletRequest,httpServletResponse);
             return false;
