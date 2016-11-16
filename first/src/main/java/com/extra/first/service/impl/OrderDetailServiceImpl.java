@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Kee on 2016/11/9.
@@ -26,5 +27,10 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 
     public List<OrderDetail> listOrderDetails(OrderDetail detail, int offset, int limit) {
         return orderDetailDao.listOrderDetails(detail,offset,limit);
+    }
+
+    public int countOrderDetails(OrderDetail detail) {
+        Map<String,Object> result = orderDetailDao.countOrderDetails(detail);
+        return Integer.parseInt(result.get("totalCount").toString());
     }
 }

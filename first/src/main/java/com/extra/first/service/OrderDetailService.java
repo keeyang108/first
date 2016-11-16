@@ -1,6 +1,7 @@
 package com.extra.first.service;
 
 import com.extra.first.pojo.OrderDetail;
+import org.springframework.dao.DataAccessException;
 
 import java.util.List;
 
@@ -22,6 +23,12 @@ public interface OrderDetailService {
      * @param limit
      * @return
      */
-    List<OrderDetail> listOrderDetails(OrderDetail detail,  int offset,int limit);
+    List<OrderDetail> listOrderDetails(OrderDetail detail,  int offset,int limit) throws DataAccessException;
 
+    /**
+     * 获取条件查询订单的总数
+     * @param detail
+     * @return
+     */
+    int countOrderDetails(OrderDetail detail);
 }
