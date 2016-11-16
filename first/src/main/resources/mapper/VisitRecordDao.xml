@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.extra.first.dao.VisitRecordDao">
+   <insert id="addVisitRecord">
+      insert into t_visit_record(ip,visit_time) values (#{ip},now());
+   </insert>
+
+   <select id="getRecordCount" resultType="java.util.Map">
+      select COUNT(1) totalCount from t_visit_record
+      <where>
+         <if test="startTime != null">
+            visit_time > #{startTime}
+         </if>
+         <if test="endTime != null">
+            and visit_time <= #{endTime}
+         </if>
+      </where>
+   </select>
+
+
+</mapper>

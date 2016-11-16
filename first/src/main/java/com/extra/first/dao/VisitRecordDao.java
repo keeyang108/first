@@ -2,6 +2,7 @@ package com.extra.first.dao;
 
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -11,5 +12,5 @@ public interface VisitRecordDao {
 
     int addVisitRecord(@Param("ip") String ip);
 
-    Map<String,Object> getRecordCount();
+    Map<String,Object> getRecordCount(@Param("startTime") Date startTime,@Param("endTime") Date endTime);
 }
