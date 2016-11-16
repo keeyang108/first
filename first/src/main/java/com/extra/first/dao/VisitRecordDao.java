@@ -10,7 +10,18 @@ import java.util.Map;
  */
 public interface VisitRecordDao {
 
+    /**
+     * 添加访问记录
+     * @param ip
+     * @return
+     */
     int addVisitRecord(@Param("ip") String ip);
 
+    /**
+     * 统计访问次数
+     * @param startTime
+     * @param endTime
+     * @return
+     */
     Map<String,Object> getRecordCount(@Param("startTime") Date startTime,@Param("endTime") Date endTime);
 }

@@ -1,0 +1,18 @@
+2016-11-16 21:34:51.595 [main] INFO  c.extra.first.dao.VisitRecordDaoTest -  ************totalCount=1
+2016-11-16 21:38:22.062 [main] INFO  c.extra.first.dao.VisitRecordDaoTest -  ************totalCount=1
+2016-11-16 21:38:22.069 [main] INFO  c.extra.first.dao.VisitRecordDaoTest -  ************totalCount=0
+2016-11-16 21:42:09.624 [main] INFO  c.extra.first.dao.VisitRecordDaoTest -  ************totalCount=1
+2016-11-16 21:42:09.631 [main] INFO  c.extra.first.dao.VisitRecordDaoTest -  ************totalCount=0
+2016-11-16 21:44:08.645 [main] INFO  c.extra.first.dao.VisitRecordDaoTest -  ************totalCount=1
+2016-11-16 21:44:08.653 [main] INFO  c.extra.first.dao.VisitRecordDaoTest -  ************totalCount=0
+2016-11-16 21:45:27.806 [main] INFO  c.extra.first.dao.VisitRecordDaoTest -  ************totalCount=1
+2016-11-16 21:45:27.815 [main] INFO  c.extra.first.dao.VisitRecordDaoTest -  ************totalCount=0
+2016-11-16 21:49:14.033 [main] INFO  c.extra.first.dao.VisitRecordDaoTest -  ************totalCount=1
+2016-11-16 21:49:14.047 [main] INFO  c.extra.first.dao.VisitRecordDaoTest -  ************totalCount=0
+2016-11-16 21:51:53.251 [main] INFO  c.extra.first.dao.VisitRecordDaoTest -  ************totalCount=1
+2016-11-16 21:51:53.260 [main] INFO  c.extra.first.dao.VisitRecordDaoTest -  ************totalCount=1
+2016-11-16 22:24:00.945 [main] INFO  c.e.f.controller.OrderControllerTest -  org.springframework.mock.web.MockHttpServletResponse@36c74ebb
+2016-11-16 22:26:09.548 [main] INFO  c.e.f.controller.OrderControllerTest -  org.springframework.mock.web.MockHttpServletResponse@453fdabc
+2016-11-16 22:30:05.380 [main] ERROR c.e.first.controller.OrderController -  ***************获取预约订单失败，错误信息You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-5,5' at line 5
+2016-11-16 22:30:57.926 [main] INFO  c.e.f.controller.OrderControllerTest -  5
+2016-11-16 22:31:48.186 [main] INFO  c.e.f.controller.OrderControllerTest -  5

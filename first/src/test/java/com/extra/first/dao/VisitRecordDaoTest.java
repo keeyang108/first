@@ -9,9 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.Date;
 import java.util.Map;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by Administrator on 2016/11/16.
@@ -32,7 +31,13 @@ public class VisitRecordDaoTest {
     @Test
     public void getRecordCount() throws Exception {
         Map<String,Object> result = visitRecordDao.getRecordCount(null,null);
-        Assert.assertEquals(result.get("totalCount"),1);
+        logger.info("************totalCount={}",result.get("totalCount").toString());
+        Assert.assertEquals(result.get("totalCount").toString(),"1");
+
+        Date now = new Date();
+        result = visitRecordDao.getRecordCount(null,now);
+        logger.info("************totalCount={}",result.get("totalCount").toString());
+        Assert.assertEquals(result.get("totalCount").toString(),"1");
     }
 
 }

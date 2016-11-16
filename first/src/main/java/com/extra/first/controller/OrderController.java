@@ -44,8 +44,9 @@ public class OrderController {
     private CarService carService;
     @Autowired
     private OrderDetailService orderDetailService;
+    @Autowired
+    private VisitRecordService visitRecordService;
 
-    int count = 0;
 
     @RequestMapping(value = "/append",method = RequestMethod.GET,produces = "application/json;charset=utf-8")
     @ResponseBody
@@ -285,10 +286,16 @@ public class OrderController {
     @RequestMapping(value = "/count")
     public void countVisit(HttpServletRequest req,HttpServletResponse res){
         res.setContentType("text/plain");
-        count++;
-        String callbackFunName =req.getParameter("callback");//得到js函数名称
+        String callbackFunName = req.getParameter("callback");//得到js函数名称
+        String ip = req.getParameter("ip");
+
         try {
-            res.getWriter().write(callbackFunName + "([{ count:"+count+"}])"); //返回jsonp数据
+            if (StringUtils.isEmpty(ip)){
+                res.getWriter().write(callbackFunName + "([{ data:"+"ip为空"+"}])"); //返回jsonp数据
+            }
+            int row = visitRecordService.addVisitRecord(ip);
+            if (row > 0 )
+            res.getWriter().write(callbackFunName + "([{ data:"+"success"+"}])"); //返回jsonp数据
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -300,10 +307,10 @@ public class OrderController {
         List<OrderDetail> details = null;
         int totalCount;
         if (orderDetail == null ){orderDetail = new OrderDetail();}
-        if (offset == null || offset < 0 ){
+        if (offset == null || offset < 1 ){
            offset = 1;
         }
-        if (limit == null || limit < 0 ){
+        if (limit == null || limit < 1 ){
             limit =10;
         }
         try {

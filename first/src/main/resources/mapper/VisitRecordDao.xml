@@ -14,7 +14,7 @@
             visit_time > #{startTime}
          </if>
          <if test="endTime != null">
-            and visit_time <= #{endTime}
+            and visit_time <![CDATA[<=#{endTime}]]>
          </if>
       </where>
    </select>
