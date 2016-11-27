@@ -16,3 +16,89 @@
 2016-11-16 22:30:05.380 [main] ERROR c.e.first.controller.OrderController -  ***************鑾峰彇棰勭害璁㈠崟澶辫触锛岄敊璇俊鎭痀ou have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-5,5' at line 5
 2016-11-16 22:30:57.926 [main] INFO  c.e.f.controller.OrderControllerTest -  5
 2016-11-16 22:31:48.186 [main] INFO  c.e.f.controller.OrderControllerTest -  5
+2016-11-16 23:46:03.780 [main] INFO  c.e.f.controller.OrderControllerTest -  5
+2016-11-16 23:46:04.390 [main] INFO  com.extra.first.dao.CarDaoTest -  Car{id=1, name='大迈X5-1.5TSUV', desciption='suv', brandId=null, status=0, brand=null}
+2016-11-16 23:46:04.406 [main] INFO  com.extra.first.dao.CityDaoTest -  1
+2016-11-16 23:46:04.418 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=1, cityName='广州', province=Province{id=1, provinceName='云南'}}
+2016-11-16 23:46:04.442 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=1, cityName='广州', province=null}
+2016-11-16 23:46:04.442 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=2, cityName='广州', province=null}
+2016-11-16 23:46:04.442 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=3, cityName='广州', province=null}
+2016-11-16 23:46:04.443 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=4, cityName='广州', province=null}
+2016-11-16 23:46:04.443 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=5, cityName='广州', province=null}
+2016-11-16 23:46:04.443 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=6, cityName='广州', province=null}
+2016-11-16 23:46:04.443 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=7, cityName='广州', province=null}
+2016-11-16 23:46:04.444 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=8, cityName='广州', province=null}
+2016-11-16 23:46:04.518 [main] INFO  com.extra.first.dao.OrderDaoTest -  1
+2016-11-16 23:46:04.538 [main] INFO  c.extra.first.dao.OrderDetailDaoTest -  *****************************row=1****************************
+2016-11-16 23:46:04.554 [main] INFO  c.extra.first.dao.OrderDetailDaoTest -  OrderDetail{id=25, name='test', mobile='12345678890', province='广东', city='深圳', agentName='华强别', agentCode=0, carType='大众', carTypeCode=1, mediaName='360', terminal='pc', createTime=Wed Nov 16 23:46:04 CST 2016}
+2016-11-16 23:46:04.554 [main] INFO  c.extra.first.dao.OrderDetailDaoTest -  OrderDetail{id=24, name='test', mobile='12345678890', province='广东', city='深圳', agentName='华强别', agentCode=0, carType='大众', carTypeCode=1, mediaName='360', terminal='pc', createTime=Wed Nov 09 23:11:20 CST 2016}
+2016-11-16 23:46:04.555 [main] INFO  c.extra.first.dao.OrderDetailDaoTest -  OrderDetail{id=23, name='test', mobile='12345678890', province='广东', city='深圳', agentName='华强别', agentCode=0, carType='大众', carTypeCode=1, mediaName='360', terminal='pc', createTime=Wed Nov 09 22:46:46 CST 2016}
+2016-11-16 23:46:04.555 [main] INFO  c.extra.first.dao.OrderDetailDaoTest -  OrderDetail{id=22, name='test', mobile='12345678890', province='广东', city='深圳', agentName='华强别', agentCode=0, carType='大众', carTypeCode=1, mediaName='360', terminal='pc', createTime=Wed Nov 09 22:23:28 CST 2016}
+2016-11-16 23:46:04.555 [main] INFO  c.extra.first.dao.OrderDetailDaoTest -  OrderDetail{id=21, name='test', mobile='12345678890', province='广东', city='深圳', agentName='华强别', agentCode=0, carType='大众', carTypeCode=1, mediaName='360', terminal='pc', createTime=Wed Nov 09 21:15:05 CST 2016}
+2016-11-16 23:46:04.556 [main] INFO  c.extra.first.dao.OrderDetailDaoTest -  OrderDetail{id=20, name='寺', mobile='18570627021', province='安徽', city='安庆', agentName='安庆捷兰汽车销售服务有限公司', agentCode=0, carType='大迈X51.5T', carTypeCode=0, mediaName='直接访问', terminal='PC', createTime=Wed Nov 09 06:54:22 CST 2016}
+2016-11-16 23:46:04.556 [main] INFO  c.extra.first.dao.OrderDetailDaoTest -  OrderDetail{id=19, name='工城', mobile='18570627021', province='安徽', city='安庆', agentName='安庆捷兰汽车销售服务有限公司', agentCode=0, carType='大迈X5升级版', carTypeCode=1, mediaName='直接访问', terminal='PC', createTime=Wed Nov 09 05:56:28 CST 2016}
+2016-11-16 23:46:04.574 [main] INFO  com.extra.first.dao.ProvinceDaoTest -  result=1
+2016-11-16 23:46:04.610 [main] INFO  c.extra.first.dao.SupervisorDaoTest -  ccb8f58b1a40ec6a54abaf8d561c1603
+2016-11-16 23:46:04.636 [main] INFO  com.extra.first.dao.UserDaoTest -  ******************************
+2016-11-16 23:46:04.686 [main] INFO  c.extra.first.dao.VisitRecordDaoTest -  ************totalCount=6
+2016-11-16 23:46:04.702 [main] INFO  com.extra.first.util.EncryptUtil -  7c0c4408524f11907a8e7b249e94d2ce
+2016-11-16 23:46:04.702 [main] INFO  com.extra.first.util.EncryptUtil -  32-7c0c4408524f11907a8e7b249e94d2ce
+2016-11-16 23:47:00.662 [main] INFO  c.e.f.controller.OrderControllerTest -  5
+2016-11-16 23:47:01.162 [main] INFO  com.extra.first.dao.CarDaoTest -  Car{id=1, name='大迈X5-1.5TSUV', desciption='suv', brandId=null, status=0, brand=null}
+2016-11-16 23:47:01.182 [main] INFO  com.extra.first.dao.CityDaoTest -  1
+2016-11-16 23:47:01.192 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=1, cityName='广州', province=Province{id=1, provinceName='云南'}}
+2016-11-16 23:47:01.202 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=1, cityName='广州', province=null}
+2016-11-16 23:47:01.202 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=2, cityName='广州', province=null}
+2016-11-16 23:47:01.202 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=3, cityName='广州', province=null}
+2016-11-16 23:47:01.202 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=4, cityName='广州', province=null}
+2016-11-16 23:47:01.203 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=5, cityName='广州', province=null}
+2016-11-16 23:47:01.203 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=6, cityName='广州', province=null}
+2016-11-16 23:47:01.203 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=7, cityName='广州', province=null}
+2016-11-16 23:47:01.203 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=8, cityName='广州', province=null}
+2016-11-16 23:47:01.203 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=9, cityName='广州', province=null}
+2016-11-16 23:47:01.283 [main] INFO  com.extra.first.dao.OrderDaoTest -  1
+2016-11-16 23:47:01.304 [main] INFO  c.extra.first.dao.OrderDetailDaoTest -  *****************************row=1****************************
+2016-11-16 23:47:01.322 [main] INFO  c.extra.first.dao.OrderDetailDaoTest -  OrderDetail{id=26, name='test', mobile='12345678890', province='广东', city='深圳', agentName='华强别', agentCode=0, carType='大众', carTypeCode=1, mediaName='360', terminal='pc', createTime=Wed Nov 16 23:47:01 CST 2016}
+2016-11-16 23:47:01.323 [main] INFO  c.extra.first.dao.OrderDetailDaoTest -  OrderDetail{id=25, name='test', mobile='12345678890', province='广东', city='深圳', agentName='华强别', agentCode=0, carType='大众', carTypeCode=1, mediaName='360', terminal='pc', createTime=Wed Nov 16 23:46:04 CST 2016}
+2016-11-16 23:47:01.323 [main] INFO  c.extra.first.dao.OrderDetailDaoTest -  OrderDetail{id=24, name='test', mobile='12345678890', province='广东', city='深圳', agentName='华强别', agentCode=0, carType='大众', carTypeCode=1, mediaName='360', terminal='pc', createTime=Wed Nov 09 23:11:20 CST 2016}
+2016-11-16 23:47:01.324 [main] INFO  c.extra.first.dao.OrderDetailDaoTest -  OrderDetail{id=23, name='test', mobile='12345678890', province='广东', city='深圳', agentName='华强别', agentCode=0, carType='大众', carTypeCode=1, mediaName='360', terminal='pc', createTime=Wed Nov 09 22:46:46 CST 2016}
+2016-11-16 23:47:01.324 [main] INFO  c.extra.first.dao.OrderDetailDaoTest -  OrderDetail{id=22, name='test', mobile='12345678890', province='广东', city='深圳', agentName='华强别', agentCode=0, carType='大众', carTypeCode=1, mediaName='360', terminal='pc', createTime=Wed Nov 09 22:23:28 CST 2016}
+2016-11-16 23:47:01.324 [main] INFO  c.extra.first.dao.OrderDetailDaoTest -  OrderDetail{id=21, name='test', mobile='12345678890', province='广东', city='深圳', agentName='华强别', agentCode=0, carType='大众', carTypeCode=1, mediaName='360', terminal='pc', createTime=Wed Nov 09 21:15:05 CST 2016}
+2016-11-16 23:47:01.325 [main] INFO  c.extra.first.dao.OrderDetailDaoTest -  OrderDetail{id=20, name='寺', mobile='18570627021', province='安徽', city='安庆', agentName='安庆捷兰汽车销售服务有限公司', agentCode=0, carType='大迈X51.5T', carTypeCode=0, mediaName='直接访问', terminal='PC', createTime=Wed Nov 09 06:54:22 CST 2016}
+2016-11-16 23:47:01.325 [main] INFO  c.extra.first.dao.OrderDetailDaoTest -  OrderDetail{id=19, name='工城', mobile='18570627021', province='安徽', city='安庆', agentName='安庆捷兰汽车销售服务有限公司', agentCode=0, carType='大迈X5升级版', carTypeCode=1, mediaName='直接访问', terminal='PC', createTime=Wed Nov 09 05:56:28 CST 2016}
+2016-11-16 23:47:01.343 [main] INFO  com.extra.first.dao.ProvinceDaoTest -  result=1
+2016-11-16 23:47:01.384 [main] INFO  c.extra.first.dao.SupervisorDaoTest -  ccb8f58b1a40ec6a54abaf8d561c1603
+2016-11-16 23:47:01.411 [main] INFO  com.extra.first.dao.UserDaoTest -  ******************************
+2016-11-16 23:47:01.449 [main] INFO  c.extra.first.dao.VisitRecordDaoTest -  ************totalCount=8
+2016-11-16 23:47:01.465 [main] INFO  com.extra.first.util.EncryptUtil -  7c0c4408524f11907a8e7b249e94d2ce
+2016-11-16 23:47:01.465 [main] INFO  com.extra.first.util.EncryptUtil -  32-7c0c4408524f11907a8e7b249e94d2ce
+2016-11-16 23:48:01.317 [main] INFO  c.e.f.controller.OrderControllerTest -  5
+2016-11-16 23:48:01.818 [main] INFO  com.extra.first.dao.CarDaoTest -  Car{id=1, name='大迈X5-1.5TSUV', desciption='suv', brandId=null, status=0, brand=null}
+2016-11-16 23:48:01.835 [main] INFO  com.extra.first.dao.CityDaoTest -  1
+2016-11-16 23:48:01.845 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=1, cityName='广州', province=Province{id=1, provinceName='云南'}}
+2016-11-16 23:48:01.858 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=1, cityName='广州', province=null}
+2016-11-16 23:48:01.859 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=2, cityName='广州', province=null}
+2016-11-16 23:48:01.859 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=3, cityName='广州', province=null}
+2016-11-16 23:48:01.859 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=4, cityName='广州', province=null}
+2016-11-16 23:48:01.860 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=5, cityName='广州', province=null}
+2016-11-16 23:48:01.860 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=6, cityName='广州', province=null}
+2016-11-16 23:48:01.860 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=7, cityName='广州', province=null}
+2016-11-16 23:48:01.861 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=8, cityName='广州', province=null}
+2016-11-16 23:48:01.861 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=9, cityName='广州', province=null}
+2016-11-16 23:48:01.861 [main] INFO  com.extra.first.dao.CityDaoTest -  City{id=10, cityName='广州', province=null}
+2016-11-16 23:48:01.934 [main] INFO  com.extra.first.dao.OrderDaoTest -  1
+2016-11-16 23:48:01.955 [main] INFO  c.extra.first.dao.OrderDetailDaoTest -  *****************************row=1****************************
+2016-11-16 23:48:01.975 [main] INFO  c.extra.first.dao.OrderDetailDaoTest -  OrderDetail{id=27, name='test', mobile='12345678890', province='广东', city='深圳', agentName='华强别', agentCode=0, carType='大众', carTypeCode=1, mediaName='360', terminal='pc', createTime=Wed Nov 16 23:48:01 CST 2016}
+2016-11-16 23:48:01.976 [main] INFO  c.extra.first.dao.OrderDetailDaoTest -  OrderDetail{id=26, name='test', mobile='12345678890', province='广东', city='深圳', agentName='华强别', agentCode=0, carType='大众', carTypeCode=1, mediaName='360', terminal='pc', createTime=Wed Nov 16 23:47:01 CST 2016}
+2016-11-16 23:48:01.976 [main] INFO  c.extra.first.dao.OrderDetailDaoTest -  OrderDetail{id=25, name='test', mobile='12345678890', province='广东', city='深圳', agentName='华强别', agentCode=0, carType='大众', carTypeCode=1, mediaName='360', terminal='pc', createTime=Wed Nov 16 23:46:04 CST 2016}
+2016-11-16 23:48:01.977 [main] INFO  c.extra.first.dao.OrderDetailDaoTest -  OrderDetail{id=24, name='test', mobile='12345678890', province='广东', city='深圳', agentName='华强别', agentCode=0, carType='大众', carTypeCode=1, mediaName='360', terminal='pc', createTime=Wed Nov 09 23:11:20 CST 2016}
+2016-11-16 23:48:01.977 [main] INFO  c.extra.first.dao.OrderDetailDaoTest -  OrderDetail{id=23, name='test', mobile='12345678890', province='广东', city='深圳', agentName='华强别', agentCode=0, carType='大众', carTypeCode=1, mediaName='360', terminal='pc', createTime=Wed Nov 09 22:46:46 CST 2016}
+2016-11-16 23:48:01.978 [main] INFO  c.extra.first.dao.OrderDetailDaoTest -  OrderDetail{id=22, name='test', mobile='12345678890', province='广东', city='深圳', agentName='华强别', agentCode=0, carType='大众', carTypeCode=1, mediaName='360', terminal='pc', createTime=Wed Nov 09 22:23:28 CST 2016}
+2016-11-16 23:48:01.978 [main] INFO  c.extra.first.dao.OrderDetailDaoTest -  OrderDetail{id=21, name='test', mobile='12345678890', province='广东', city='深圳', agentName='华强别', agentCode=0, carType='大众', carTypeCode=1, mediaName='360', terminal='pc', createTime=Wed Nov 09 21:15:05 CST 2016}
+2016-11-16 23:48:01.978 [main] INFO  c.extra.first.dao.OrderDetailDaoTest -  OrderDetail{id=20, name='寺', mobile='18570627021', province='安徽', city='安庆', agentName='安庆捷兰汽车销售服务有限公司', agentCode=0, carType='大迈X51.5T', carTypeCode=0, mediaName='直接访问', terminal='PC', createTime=Wed Nov 09 06:54:22 CST 2016}
+2016-11-16 23:48:01.979 [main] INFO  c.extra.first.dao.OrderDetailDaoTest -  OrderDetail{id=19, name='工城', mobile='18570627021', province='安徽', city='安庆', agentName='安庆捷兰汽车销售服务有限公司', agentCode=0, carType='大迈X5升级版', carTypeCode=1, mediaName='直接访问', terminal='PC', createTime=Wed Nov 09 05:56:28 CST 2016}
+2016-11-16 23:48:01.994 [main] INFO  com.extra.first.dao.ProvinceDaoTest -  result=1
+2016-11-16 23:48:02.036 [main] INFO  c.extra.first.dao.SupervisorDaoTest -  ccb8f58b1a40ec6a54abaf8d561c1603
+2016-11-16 23:48:02.088 [main] INFO  com.extra.first.dao.UserDaoTest -  ******************************
+2016-11-16 23:48:02.153 [main] INFO  com.extra.first.util.EncryptUtil -  7c0c4408524f11907a8e7b249e94d2ce
+2016-11-16 23:48:02.153 [main] INFO  com.extra.first.util.EncryptUtil -  32-7c0c4408524f11907a8e7b249e94d2ce

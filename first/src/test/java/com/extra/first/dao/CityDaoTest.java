@@ -1,6 +1,7 @@
 package com.extra.first.dao;
 
 import com.extra.first.pojo.City;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -14,6 +15,7 @@ import java.util.List;
 /**
  * Created by Kee on 2016/10/23.
  */
+@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:config/spring/application-dao.xml"})
 public class CityDaoTest {

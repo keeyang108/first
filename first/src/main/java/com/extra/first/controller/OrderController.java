@@ -230,7 +230,7 @@ public class OrderController {
         if (detail == null ){
             detail = new OrderDetail();
         }
-        result = orderDetailService.listOrderDetails(detail,0,00);
+        result = orderDetailService.listOrderDetails(detail,0,10000);
         Map<String,Object> map   = null;
         for (OrderDetail detail1 : result){
            map  = new HashMap<String,Object>();
