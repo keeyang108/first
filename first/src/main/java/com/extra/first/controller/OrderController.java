@@ -20,6 +20,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -231,18 +232,18 @@ public class OrderController {
             detail = new OrderDetail();
         }
         result = orderDetailService.listOrderDetails(detail,0,10000);
-        Map<String,Object> map   = null;
-        for (OrderDetail detail1 : result){
-           map  = new HashMap<String,Object>();
-           map.put("name",detail.getAgentName());
-            map.put("sex",detail.getSex());
-            map.put("mobile",detail.getMobile());
-            map.put("province",detail.getProvince());
-            map.put("city",detail.getCity());
-            map.put("agentName",detail.getAgentName());
-            map.put("carType",detail.getCarType());
-            map.put("mediaName",detail.getMediaName());
-            map.put("createTime",detail.getCreateTime());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        for (OrderDetail orderDetail : result){
+            Map<String,Object> map  = new HashMap<String,Object>();
+            map.put("name",orderDetail.getName());
+            map.put("sex",orderDetail.getSex());
+            map.put("mobile",orderDetail.getMobile());
+            map.put("province",orderDetail.getProvince());
+            map.put("city",orderDetail.getCity());
+            map.put("agentName",orderDetail.getAgentName());
+            map.put("carType",orderDetail.getCarType());
+            map.put("mediaName",orderDetail.getMediaName());
+            map.put("createTime",dateFormat.format(orderDetail.getCreateTime()));
             list.add(map);
         }
         String[] titles = {"用户名", "性别","电话","省份", "城市","经销商" ,"车型","渠道","预约时间"};
