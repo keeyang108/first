@@ -12,7 +12,7 @@
 
     <select id="listOrderDetails" resultType="com.extra.first.pojo.OrderDetail">
         select
-            id, name,sex, mobile,province,city,agentName,agentCode,carType,carTypeCode,mediaName,terminal,date_format(create_time,'%Y-%m-%d %T') createTime
+            id, name,sex, mobile,province,city,agentName,agentCode,carType,carTypeCode,mediaName,terminal,subject,date_format(create_time,'%Y-%m-%d %T') createTime
         from t_order_detail
         order by create_time desc
         limit #{offset},#{limit}

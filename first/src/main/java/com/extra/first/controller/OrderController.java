@@ -124,17 +124,19 @@ public class OrderController {
             json = new JSONPObject(callback,result);
             return json;
         }
+        String subject = request.getParameter("subject");
+        logger.info("*************subject={}*******************",subject);
         String terminal = request.getParameter("terminal");
         logger.info("**************terminal={}******************",terminal);
         OrderDetail detail = new OrderDetail(name,sex,mobile,province,
                 city,agentName,Integer.parseInt(agentCode),carType,
-                Integer.parseInt(carTypeCode),mediaName,terminal);
+                Integer.parseInt(carTypeCode),mediaName,terminal,subject);
         int row = orderDetailService.insertOrder(detail);
         if (row < 1 ){
             logger.warn("****** Add order failed *************");
             return new JSONPObject(callback,new BaseResult<Object>(false,"Add failed"));
         }
-        logger.info("*********name={},mobile={},province={},city={},agentName={},agentCode={},carType={},carTypeCode={},mediaName={},terminal={}",name,mobile,province,city,agentName,agentCode,carType,carTypeCode,mediaName,terminal);
+        logger.info("*********name={},mobile={},province={},city={},agentName={},agentCode={},carType={},carTypeCode={},mediaName={},terminal={},subject={}",name,mobile,province,city,agentName,agentCode,carType,carTypeCode,mediaName,terminal,subject);
         return new JSONPObject(callback,new BaseResult<Object>(true,"success"));
     }
 
