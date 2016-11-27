@@ -15,3 +15,18 @@
 2016-11-27 14:08:35.330 [main] INFO  com.extra.first.dao.UserDaoTest -  ******************************
 2016-11-27 14:08:35.641 [main] INFO  com.extra.first.util.EncryptUtil -  7c0c4408524f11907a8e7b249e94d2ce
 2016-11-27 14:08:35.642 [main] INFO  com.extra.first.util.EncryptUtil -  32-7c0c4408524f11907a8e7b249e94d2ce
+2016-11-27 21:22:24.598 [main] ERROR c.e.first.controller.OrderController -  ***************获取预约订单失败，错误信息FUNCTION ad.date_diff does not exist
+2016-11-27 21:22:58.755 [main] INFO  c.e.f.controller.OrderControllerTest -  5
+2016-11-27 21:29:39.032 [main] INFO  c.e.f.controller.OrderControllerTest -  5
+2016-11-27 21:30:16.796 [main] INFO  c.e.f.controller.OrderControllerTest -  5
+2016-11-27 21:32:24.967 [main] INFO  c.e.f.controller.OrderControllerTest -  4
+2016-11-27 21:34:06.628 [main] ERROR c.e.first.controller.OrderController -  ***************获取预约订单失败，错误信息You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'subject='大迈X5双11专题' 
+        order by create_time desc
+        limit 0' at line 7
+2016-11-27 21:35:12.850 [main] ERROR c.e.first.controller.OrderController -  ***************获取预约订单失败，错误信息You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'subject='大迈X5双11专题' 
+        order by create_time desc
+        limit 0' at line 7
+2016-11-27 21:35:22.447 [main] INFO  c.e.f.controller.OrderControllerTest -  1
+2016-11-27 21:35:59.538 [main] INFO  c.e.f.controller.OrderControllerTest -  5
+2016-11-27 21:57:37.153 [main] INFO  c.e.f.controller.OrderControllerTest -  5
+2016-11-27 21:57:37.156 [main] INFO  c.e.f.controller.OrderControllerTest -  大迈X5双11专题

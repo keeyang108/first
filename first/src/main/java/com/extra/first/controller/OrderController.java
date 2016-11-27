@@ -332,6 +332,14 @@ public class OrderController {
         pageBean.setData(details);
         pageBean.setTotalCount(totalCount);
         pageBean.setTotalPage(totalCount/limit);
+        Map<String,Object> conditions = new HashMap<String,Object>();
+        if (orderDetail.getCreateTime() != null ){
+            conditions.put("time",orderDetail.getCreateTime());
+        }
+        if (!StringUtils.isEmpty(orderDetail.getSubject())) {
+            conditions.put("subject",orderDetail.getSubject());
+        }
+        pageBean.setConditions(conditions);
         return new BaseResult<PageBean<OrderDetail>>(true,pageBean);
     }
 }
