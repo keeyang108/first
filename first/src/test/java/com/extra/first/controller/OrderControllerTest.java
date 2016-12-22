@@ -80,8 +80,11 @@ public class OrderControllerTest {
 
     @Test
     public void listOrder() throws Exception {
-        BaseResult<PageBean<OrderDetail>> page = orderController.listOrder(null,0,5);
+        OrderDetail detail = new OrderDetail();
+        detail.setSubject("大迈X5双11专题");
+        BaseResult<PageBean<OrderDetail>> page = orderController.listOrder(detail,0,5);
         logger.info(page.getData().getData().size()+"");
+        logger.info(page.getData().getConditions().get("subject").toString());
     }
 
 }

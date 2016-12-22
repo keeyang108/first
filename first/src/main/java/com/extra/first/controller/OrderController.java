@@ -20,6 +20,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -123,17 +124,19 @@ public class OrderController {
             json = new JSONPObject(callback,result);
             return json;
         }
+        String subject = request.getParameter("subject");
+        logger.info("*************subject={}*******************",subject);
         String terminal = request.getParameter("terminal");
         logger.info("**************terminal={}******************",terminal);
         OrderDetail detail = new OrderDetail(name,sex,mobile,province,
                 city,agentName,Integer.parseInt(agentCode),carType,
-                Integer.parseInt(carTypeCode),mediaName,terminal);
+                Integer.parseInt(carTypeCode),mediaName,terminal,subject);
         int row = orderDetailService.insertOrder(detail);
         if (row < 1 ){
             logger.warn("****** Add order failed *************");
             return new JSONPObject(callback,new BaseResult<Object>(false,"Add failed"));
         }
-        logger.info("*********name={},mobile={},province={},city={},agentName={},agentCode={},carType={},carTypeCode={},mediaName={},terminal={}",name,mobile,province,city,agentName,agentCode,carType,carTypeCode,mediaName,terminal);
+        logger.info("*********name={},mobile={},province={},city={},agentName={},agentCode={},carType={},carTypeCode={},mediaName={},terminal={},subject={}",name,mobile,province,city,agentName,agentCode,carType,carTypeCode,mediaName,terminal,subject);
         return new JSONPObject(callback,new BaseResult<Object>(true,"success"));
     }
 
@@ -230,19 +233,19 @@ public class OrderController {
         if (detail == null ){
             detail = new OrderDetail();
         }
-        result = orderDetailService.listOrderDetails(detail,0,00);
-        Map<String,Object> map   = null;
-        for (OrderDetail detail1 : result){
-           map  = new HashMap<String,Object>();
-           map.put("name",detail.getAgentName());
-            map.put("sex",detail.getSex());
-            map.put("mobile",detail.getMobile());
-            map.put("province",detail.getProvince());
-            map.put("city",detail.getCity());
-            map.put("agentName",detail.getAgentName());
-            map.put("carType",detail.getCarType());
-            map.put("mediaName",detail.getMediaName());
-            map.put("createTime",detail.getCreateTime());
+        result = orderDetailService.listOrderDetails(detail,0,10000);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        for (OrderDetail orderDetail : result){
+            Map<String,Object> map  = new HashMap<String,Object>();
+            map.put("name",orderDetail.getName());
+            map.put("sex",orderDetail.getSex());
+            map.put("mobile",orderDetail.getMobile());
+            map.put("province",orderDetail.getProvince());
+            map.put("city",orderDetail.getCity());
+            map.put("agentName",orderDetail.getAgentName());
+            map.put("carType",orderDetail.getCarType());
+            map.put("mediaName",orderDetail.getMediaName());
+            map.put("createTime",dateFormat.format(orderDetail.getCreateTime()));
             list.add(map);
         }
         String[] titles = {"用户名", "性别","电话","省份", "城市","经销商" ,"车型","渠道","预约时间"};
@@ -329,6 +332,14 @@ public class OrderController {
         pageBean.setData(details);
         pageBean.setTotalCount(totalCount);
         pageBean.setTotalPage(totalCount/limit);
+        Map<String,Object> conditions = new HashMap<String,Object>();
+        if (orderDetail.getCreateTime() != null ){
+            conditions.put("time",orderDetail.getCreateTime());
+        }
+        if (!StringUtils.isEmpty(orderDetail.getSubject())) {
+            conditions.put("subject",orderDetail.getSubject());
+        }
+        pageBean.setConditions(conditions);
         return new BaseResult<PageBean<OrderDetail>>(true,pageBean);
     }
 }

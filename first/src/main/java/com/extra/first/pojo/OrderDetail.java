@@ -1,5 +1,8 @@
 package com.extra.first.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -19,12 +22,15 @@ public class OrderDetail {
     private Integer carTypeCode;
     private String mediaName;
     private String terminal;
+    private String subject;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;
 
     public OrderDetail() {
     }
 
-    public OrderDetail(String name, String sex, String mobile, String province, String city, String agentName, Integer agentCode, String carType, Integer carTypeCode, String mediaName, String terminal) {
+    public OrderDetail(String name, String sex, String mobile, String province, String city, String agentName, Integer agentCode, String carType, Integer carTypeCode, String mediaName, String terminal, String subject) {
         this.name = name;
         this.sex = sex;
         this.mobile = mobile;
@@ -36,6 +42,15 @@ public class OrderDetail {
         this.carTypeCode = carTypeCode;
         this.mediaName = mediaName;
         this.terminal = terminal;
+        this.subject = subject;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
     public String getSex() {
@@ -147,6 +162,7 @@ public class OrderDetail {
         return "OrderDetail{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", sex='" + sex + '\'' +
                 ", mobile='" + mobile + '\'' +
                 ", province='" + province + '\'' +
                 ", city='" + city + '\'' +
@@ -156,6 +172,7 @@ public class OrderDetail {
                 ", carTypeCode=" + carTypeCode +
                 ", mediaName='" + mediaName + '\'' +
                 ", terminal='" + terminal + '\'' +
+                ", subject='" + subject + '\'' +
                 ", createTime=" + createTime +
                 '}';
     }

@@ -37,7 +37,7 @@
           <div class="col-md-12">
             <div class="col-sm-offset-2 col-sm-10">
               <input type="button" value="Sign in" class="btn btn-default" id="login">
-              <input type="button" value="add" class="btn btn-default" id="add">
+              <!--<input type="button" value="add" class="btn btn-default" id="add">-->
             </div>
           </div>
         </div>
@@ -47,21 +47,21 @@
   <script src="js/jquery.min.js"></script>
 <script type="application/javascript">
 
-  $('#add').click(function(){
-    var user = {
-      'supervisorName':'xiong08',
-      password:'xiongfeng',
-      supervisorPhone:'18570627021'
-    }
-    $.post('/common/supervisor/user/add',user,function(callbackstr){
-      if(callbackstr.success){
-        alert('添加成功')
-        location.href=="index.html";
-      }else{
-        alert(callbackstr.error);
-      }
-    })
-  });
+//  $('#add').click(function(){
+//    var user = {
+//      'supervisorName':'xiong08',
+//      password:'xiongfeng',
+//      supervisorPhone:'18570627021'
+//    }
+//    $.post('/common/supervisor/user/add',user,function(callbackstr){
+//      if(callbackstr.success){
+//        alert('添加成功')
+//        location.href=="index.html";
+//      }else{
+//        alert(callbackstr.error);
+//      }
+//    })
+//  });
   $('#login').click(function () {
     var data = {
       'userName' :$('#username').val(),
