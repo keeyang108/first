@@ -1,6 +1,7 @@
 package com.extra.first.dao;
 
 import com.extra.first.pojo.Supervisor;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -38,6 +39,7 @@ public class SupervisorDaoTest {
 //        supervisorDao.addSupervisor(supervisor);
 //    }
 
+    @Ignore
     @Test
     public void checkUser() throws Exception {
         Supervisor supervisor = new Supervisor();
