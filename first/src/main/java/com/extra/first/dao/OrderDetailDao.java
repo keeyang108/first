@@ -29,4 +29,5 @@ public interface OrderDetailDao {
     List<OrderDetail> listOrderDetails(@Param("detail") OrderDetail detail,@Param("offset") int offset,@Param("limit") int limit) throws DataAccessException;
 
     Map<String,Object> countOrderDetails(@Param("detail")OrderDetail detail);
+
 }

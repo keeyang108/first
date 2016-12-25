@@ -6,8 +6,8 @@
 
     <insert id="insertOrder" parameterType="com.extra.first.pojo.OrderDetail">
         insert into
-        t_order_detail(name,sex,mobile,province,city,agentName,agentCode,carType,carTypeCode,mediaName,terminal,create_time)
-        values(#{order.name},#{order.sex},#{order.mobile},#{order.province},#{order.city},#{order.agentName},#{order.agentCode},#{order.carType},#{order.carTypeCode},#{order.mediaName},#{order.terminal},now());
+        t_order_detail(name,sex,mobile,province,city,agentName,agentCode,carType,carTypeCode,mediaName,terminal,create_time,subject,is_activity)
+        values(#{order.name},#{order.sex},#{order.mobile},#{order.province},#{order.city},#{order.agentName},#{order.agentCode},#{order.carType},#{order.carTypeCode},#{order.mediaName},#{order.terminal},now(),#{order.subject},#{order.isActivity});
     </insert>
 
     <select id="listOrderDetails" resultType="com.extra.first.pojo.OrderDetail">
@@ -20,6 +20,9 @@
             </if>
             <if test="detail.subject !=null">
                 and subject=#{detail.subject}
+            </if>
+            <if test="detail.isActivity==1">
+                and is_activity=1
             </if>
         </where>
         order by create_time desc

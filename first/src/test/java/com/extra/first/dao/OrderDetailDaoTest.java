@@ -1,6 +1,7 @@
 package com.extra.first.dao;
 
 import com.extra.first.pojo.OrderDetail;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -21,6 +22,8 @@ public class OrderDetailDaoTest {
     Logger logger = LoggerFactory.getLogger(OrderDetailDaoTest.class);
     @Autowired
     private OrderDetailDao orderDetailDao;
+
+    @Ignore
     @Test
     public void insertOrder() throws Exception {
         OrderDetail orderDetail = new OrderDetail();

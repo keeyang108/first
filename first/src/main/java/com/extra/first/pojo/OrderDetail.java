@@ -26,6 +26,7 @@ public class OrderDetail {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;
+    private int isActivity;
 
     public OrderDetail() {
     }
@@ -45,6 +46,22 @@ public class OrderDetail {
         this.subject = subject;
     }
 
+    public OrderDetail(String name, String sex, String mobile, String province, String city, String agentName, Integer agentCode, String carType, Integer carTypeCode, String mediaName, String terminal, String subject, int isActivity) {
+        this.name = name;
+        this.sex = sex;
+        this.mobile = mobile;
+        this.province = province;
+        this.city = city;
+        this.agentName = agentName;
+        this.agentCode = agentCode;
+        this.carType = carType;
+        this.carTypeCode = carTypeCode;
+        this.mediaName = mediaName;
+        this.terminal = terminal;
+        this.subject = subject;
+        this.isActivity = isActivity;
+    }
+
     public String getSubject() {
         return subject;
     }
@@ -55,6 +72,14 @@ public class OrderDetail {
 
     public String getSex() {
         return sex;
+    }
+
+    public int getIsActivity() {
+        return isActivity;
+    }
+
+    public void setIsActivity(int isActivity) {
+        this.isActivity = isActivity;
     }
 
     public void setSex(String sex) {

@@ -4,6 +4,7 @@ import com.extra.first.dto.BaseResult;
 import com.extra.first.pojo.OrderDetail;
 import com.extra.first.pojo.PageBean;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -78,10 +79,12 @@ public class OrderControllerTest {
         response.getWriter().println();
     }
 
+    @Ignore
     @Test
     public void listOrder() throws Exception {
         OrderDetail detail = new OrderDetail();
-        detail.setSubject("大迈X5双11专题");
+//        detail.setSubject("大迈X5双11专题");
+        detail.setIsActivity(1);
         BaseResult<PageBean<OrderDetail>> page = orderController.listOrder(detail,0,5);
         logger.info(page.getData().getData().size()+"");
         logger.info(page.getData().getConditions().get("subject").toString());
