@@ -10,7 +10,7 @@
     </insert>
 
     <update id="updateViewCount">
-        update t_subject set view_count=view+1 where id=#{id};
+        update t_subject set view_count=view_count+1 where id=#{id};
     </update>
     
     <select id="listSubjects" parameterType="com.extra.first.pojo.Subject" resultType="com.extra.first.pojo.Subject">

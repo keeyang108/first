@@ -48,6 +48,8 @@ public class OrderController {
     private OrderDetailService orderDetailService;
     @Autowired
     private VisitRecordService visitRecordService;
+    @Autowired
+    private SubjectService subjectService;
 
 
     @RequestMapping(value = "/append",method = RequestMethod.GET,produces = "application/json;charset=utf-8")
@@ -292,13 +294,13 @@ public class OrderController {
     public void countVisit(HttpServletRequest req,HttpServletResponse res){
         res.setContentType("text/plain");
         String callbackFunName = req.getParameter("callback");//得到js函数名称
-        String ip = req.getParameter("ip");
+        String subjectId = req.getParameter("subjectId");
 
         try {
-            if (StringUtils.isEmpty(ip)){
-                res.getWriter().write(callbackFunName + "([{ data:"+"ip为空"+"}])"); //返回jsonp数据
+            if (StringUtils.isEmpty(subjectId) || Integer.parseInt(subjectId)<=0 ){
+                res.getWriter().write(callbackFunName + "([{ data:"+"invalid parameters"+"}])"); //返回jsonp数据
             }
-            int row = visitRecordService.addVisitRecord(ip);
+            int row = subjectService.updateViewCount(Integer.parseInt(subjectId));
             if (row > 0 )
             res.getWriter().write(callbackFunName + "([{ data:"+"success"+"}])"); //返回jsonp数据
         } catch (IOException e) {
@@ -402,4 +404,5 @@ public class OrderController {
             return null;
         }
     }
+
 }
