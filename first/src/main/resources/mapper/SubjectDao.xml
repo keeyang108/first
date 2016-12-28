@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.extra.first.dao.SubjectDao">
+    <insert id="addSubject" parameterType="com.extra.first.pojo.Subject">
+        insert into t_subject(name,url,description,create_time)
+        VALUES
+        (#{subject.name},#{subject.url},#{subject.description},now());
+    </insert>
+
+    <update id="updateViewCount">
+        update t_subject set view_count=view+1 where id=#{id};
+    </update>
+    
+    <select id="listSubjects" parameterType="com.extra.first.pojo.Subject" resultType="com.extra.first.pojo.Subject">
+        select
+        id,name,url,description,create_time,update_time,status,view_count
+        from t_subject
+        <where>
+            <if test="subject.name!=null">
+                name like concat('%',#{subject.name},'%')
+            </if>
+        </where>
+        order by create_time desc limit #{offset},#{limit};
+    </select>
+
+</mapper>
