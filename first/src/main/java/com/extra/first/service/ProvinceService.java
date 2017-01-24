@@ -11,6 +11,6 @@ public interface ProvinceService {
 
     List<Province> listProvince(int offset, int limit);
 
-    int addProvince(String provinceName);
+    int addProvince(Province province);
 
 }

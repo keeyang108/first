@@ -26,8 +26,12 @@ public class CityDaoTest {
     private CityDao cityDao;
 
     @Test
+    @Ignore
     public void addCity() throws Exception {
-        int result = cityDao.addCity(1, "广州");
+        City city = new City();
+        city.setProvinceId(1);
+        city.setCityName("广州");
+        int result = cityDao.addCity(city);
         logger.info(result + "");
     }
 

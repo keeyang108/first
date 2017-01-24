@@ -3,6 +3,12 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.extra.first.dao.AgencyDao">
+    <insert id="addAgency" parameterType="com.extra.first.pojo.Agency">
+        insert into t_agency(city_id,agency_name,agency_address,connect_phone,create_time)
+        VALUES
+        (#{agency.cityId},#{agency.agencyName},#{agency.agencyAddress},#{agency.connectPhone},now());
+    </insert>
+
     <select id="queryAgenciesByCityId" resultType="com.extra.first.pojo.Agency">
         select id,agency_name,agency_address,connect_phone,create_time
         from t_agency where city_id = #{cityId} limit #{offset},#{limit};

@@ -4,8 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.extra.first.dao.CityDao">
 
-    <insert id="addCity">
-        insert into t_city (province_id,city_name) values(#{provinceId},#{cityName});
+    <insert id="addCity" parameterType="com.extra.first.pojo.City" useGeneratedKeys="true" keyProperty="city.id"  >
+        insert into t_city(province_id,city_name,create_time) values(#{city.provinceId},#{city.cityName},now());
     </insert>
 
     <select id="queryCityById" resultType="com.extra.first.pojo.City">

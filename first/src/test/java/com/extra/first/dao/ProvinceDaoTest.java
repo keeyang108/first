@@ -1,6 +1,7 @@
 package com.extra.first.dao;
 
 import com.extra.first.pojo.Province;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -22,8 +23,11 @@ public class ProvinceDaoTest {
     private ProvinceDao provinceDao;
 
     @Test
+    @Ignore
     public void addProvince() throws Exception {
-        int result = provinceDao.addProvince("北京");
+        Province province = new Province();
+        province.setProvinceName("北京");
+        int result = provinceDao.addProvince(province);
         logger.info("result=" + result);
     }
 

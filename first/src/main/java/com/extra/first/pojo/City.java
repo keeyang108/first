@@ -1,5 +1,6 @@
 package com.extra.first.pojo;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -12,6 +13,7 @@ public class City {
     private Integer provinceId;
     private String cityName;
     private Province province;
+    private Date createTime;
     private List<Agency> agencyList;
 
     public List<Agency> getAgencyList() {
@@ -52,6 +54,14 @@ public class City {
 
     public void setProvince(Province province) {
         this.province = province;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     @Override

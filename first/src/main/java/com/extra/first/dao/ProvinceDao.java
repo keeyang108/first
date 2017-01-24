@@ -13,10 +13,10 @@ public interface ProvinceDao {
 
     /**
      * 添加省份
-     * @param provinceName
+     * @param province
      * @return
      */
-    int addProvince(String provinceName);
+    int addProvince(@Param("province") Province province);
 
     /**
      * 获取省份列表

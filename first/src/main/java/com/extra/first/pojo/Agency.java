@@ -14,6 +14,15 @@ public class Agency {
     private String agencyAddress;
     private String connectPhone;
     private Date createTime;
+    private Date updateTime;
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 
     private City city;
 

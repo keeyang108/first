@@ -12,12 +12,9 @@ public interface CityDao {
 
     /**
      * 添加城市
-     *
-     * @param provinceId
-     * @param cityName
      * @return
      */
-    int addCity(@Param("provinceId") int provinceId, @Param("cityName") String cityName);
+    int addCity(@Param("city") City city);
 
     /**
      * 根据Id获取记录

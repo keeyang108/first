@@ -3,8 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.extra.first.dao.ProvinceDao">
-    <insert id="addProvince" parameterType="String">
-        insert into t_province(province_name) VALUES (#{provinceName});
+    <insert id="addProvince" parameterType="com.extra.first.pojo.Province" useGeneratedKeys="true" keyProperty="province.id"  keyColumn="GENERATED_KEY" >
+        insert into t_province(province_name,create_time) VALUES (#{province.provinceName},now());
     </insert>
 
     <select id="listProvince" resultType="com.extra.first.pojo.Province">

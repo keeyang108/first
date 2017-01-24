@@ -16,7 +16,7 @@ public interface AgencyDao {
      * @param agency
      * @return
      */
-    int addAgency(Agency agency);
+    int addAgency(@Param("agency") Agency agency);
 
     /**
      * 修改经销商资料

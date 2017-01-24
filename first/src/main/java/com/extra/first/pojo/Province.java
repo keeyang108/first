@@ -1,5 +1,6 @@
 package com.extra.first.pojo;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -10,6 +11,15 @@ public class Province {
     private Integer id;
     private String provinceName;
     private List<City> cityList;
+    private Date createTime;
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
     public List<City> getCityList() {
         return cityList;
@@ -40,6 +50,8 @@ public class Province {
         return "Province{" +
                 "id=" + id +
                 ", provinceName='" + provinceName + '\'' +
+                ", cityList=" + cityList +
+                ", createTime=" + createTime +
                 '}';
     }
 }

@@ -21,7 +21,7 @@ public class ProvinceServiceImpl implements ProvinceService {
         return provinceDao.listProvince(offset, limit);
     }
 
-    public int addProvince(String provinceName) {
-        return provinceDao.addProvince(provinceName);
+    public int addProvince(Province province) {
+        return provinceDao.addProvince(province);
     }
 }
