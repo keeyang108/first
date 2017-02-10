@@ -127,6 +127,13 @@ public class OrderController {
             json = new JSONPObject(callback,result);
             return json;
         }
+        String mediaUrl = URLDecoder.decode(request.getParameter("mediaUrl"), "utf-8");
+        logger.info("**************mediaUrl={}******************",mediaUrl);
+        if (mediaUrl == null || StringUtils.isEmpty(mediaUrl)){
+            BaseResult<Object> result = new BaseResult<Object>(false,"非法参数");
+            json = new JSONPObject(callback,result);
+            return json;
+        }
         String subject = request.getParameter("subject");
         logger.info("*************subject={}*******************",subject);
         String terminal = request.getParameter("terminal");
@@ -134,7 +141,7 @@ public class OrderController {
         int isActivity = request.getParameter("isActivity") == null ? 0:1;
         OrderDetail detail = new OrderDetail(name,sex,mobile,province,
                 city,agentName,Integer.parseInt(agentCode),carType,
-                Integer.parseInt(carTypeCode),mediaName,terminal,subject,isActivity);
+                Integer.parseInt(carTypeCode),mediaName,terminal,subject,isActivity,mediaUrl);
         int row = orderDetailService.insertOrder(detail);
         if (row < 1 ){
             logger.warn("****** Add order failed *************");
@@ -250,10 +257,11 @@ public class OrderController {
             map.put("carType",orderDetail.getCarType());
             map.put("mediaName",orderDetail.getMediaName());
             map.put("createTime",dateFormat.format(orderDetail.getCreateTime()));
+            map.put("mediaUrl",orderDetail.getMediaUrl());
             list.add(map);
         }
-        String[] titles = {"用户名", "性别","电话","省份", "城市","经销商" ,"车型","渠道","预约时间"};
-        String[] keys = {"name", "sex","mobile", "province", "city", "agentName","carType","mediaName","createTime"};
+        String[] titles = {"用户名", "性别","电话","省份", "城市","经销商" ,"车型","渠道","渠道链接","预约时间"};
+        String[] keys = {"name", "sex","mobile", "province", "city", "agentName","carType","mediaName","mediaUrl","createTime"};
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         BufferedInputStream bis = null;
         BufferedOutputStream bos = null;

@@ -10,7 +10,6 @@ import com.extra.first.pojo.Order;
 import com.extra.first.pojo.Province;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.util.StringUtil;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -46,8 +45,8 @@ public class ExcelUtilTest {
     @Ignore
     @Test
     public void createExcel() throws Exception {
-        List<Map<String,Object>> data = orderDao.queryOrders(new Order(),0,10);
-        HSSFWorkbook workbook = ExcelUtil.createExcel("test",new String[]{"用户名","电话","省份","城市","经销商","车型"},new String[]{"userName","userPhone","provinceName","cityName","agencyName","carName"},data);
+        List<Map<String, Object>> data = orderDao.queryOrders(new Order(), 0, 10);
+        HSSFWorkbook workbook = ExcelUtil.createExcel("test", new String[]{"用户名", "电话", "省份", "城市", "经销商", "车型"}, new String[]{"userName", "userPhone", "provinceName", "cityName", "agencyName", "carName"}, data);
         OutputStream out = new ByteArrayOutputStream();
         workbook.write(out);
     }
@@ -84,3 +83,4 @@ public class ExcelUtilTest {
     }
 
 }
+
