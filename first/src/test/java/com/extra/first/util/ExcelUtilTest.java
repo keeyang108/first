@@ -23,10 +23,11 @@ public class ExcelUtilTest {
 
     @Autowired
     private OrderDao orderDao;
+
     @Test
     public void createExcel() throws Exception {
-        List<Map<String,Object>> data = orderDao.queryOrders(new Order(),0,10);
-        HSSFWorkbook workbook = ExcelUtil.createExcel("test",new String[]{"用户名","电话","省份","城市","经销商","车型"},new String[]{"userName","userPhone","provinceName","cityName","agencyName","carName"},data);
+        List<Map<String, Object>> data = orderDao.queryOrders(new Order(), 0, 10);
+        HSSFWorkbook workbook = ExcelUtil.createExcel("test", new String[]{"用户名", "电话", "省份", "城市", "经销商", "车型"}, new String[]{"userName", "userPhone", "provinceName", "cityName", "agencyName", "carName"}, data);
         OutputStream out = new ByteArrayOutputStream();
         workbook.write(out);
     }

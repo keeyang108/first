@@ -27,6 +27,7 @@ public class OrderDetail {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;
     private int isActivity;
+    private String mediaUrl;
 
     public OrderDetail() {
     }
@@ -60,6 +61,31 @@ public class OrderDetail {
         this.terminal = terminal;
         this.subject = subject;
         this.isActivity = isActivity;
+    }
+
+    public OrderDetail(String name, String sex, String mobile, String province, String city, String agentName, Integer agentCode, String carType, Integer carTypeCode, String mediaName, String terminal, String subject, int isActivity, String mediaUrl) {
+        this.name = name;
+        this.sex = sex;
+        this.mobile = mobile;
+        this.province = province;
+        this.city = city;
+        this.agentName = agentName;
+        this.agentCode = agentCode;
+        this.carType = carType;
+        this.carTypeCode = carTypeCode;
+        this.mediaName = mediaName;
+        this.terminal = terminal;
+        this.subject = subject;
+        this.isActivity = isActivity;
+        this.mediaUrl = mediaUrl;
+    }
+
+    public String getMediaUrl() {
+        return mediaUrl;
+    }
+
+    public void setMediaUrl(String mediaUrl) {
+        this.mediaUrl = mediaUrl;
     }
 
     public String getSubject() {
