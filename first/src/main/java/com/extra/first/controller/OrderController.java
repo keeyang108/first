@@ -1,6 +1,7 @@
 package com.extra.first.controller;
 
 import com.extra.first.dto.BaseResult;
+import com.extra.first.model.OrderDetailQueryBean;
 import com.extra.first.pojo.*;
 import com.extra.first.service.*;
 import com.extra.first.util.ExcelUtil;
@@ -236,12 +237,17 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/download")
-    public String download(@ModelAttribute OrderDetail detail, HttpServletResponse response) {
+    public String download(@ModelAttribute OrderDetailQueryBean detail, HttpServletResponse response) {
         List<OrderDetail> result = null;
         List<Map<String,Object>> list = new ArrayList<Map<String, Object>>();
-        if (detail == null ){
-            detail = new OrderDetail();
+        if( detail != null && StringUtils.isEmpty(detail.getSubject())){
+            return null;
         }
+        if (detail == null ){
+            detail = new OrderDetailQueryBean();
+        }
+        detail.setIsActivity(false);
+        logger.info(detail.toString());
         result = orderDetailService.listOrderDetails(detail,0,10000);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         for (OrderDetail orderDetail : result){
@@ -317,10 +323,10 @@ public class OrderController {
 
     @RequestMapping(value = "/list",method = RequestMethod.GET,produces = {"application/json;charset=utf-8"})
     @ResponseBody
-    public BaseResult<PageBean<OrderDetail>> listOrder(@ModelAttribute OrderDetail orderDetail,Integer offset,Integer limit ){
+    public BaseResult<PageBean<OrderDetail>> listOrder(@ModelAttribute OrderDetailQueryBean orderDetail, Integer offset, Integer limit ){
         List<OrderDetail> details = null;
         int totalCount;
-        if (orderDetail == null ){orderDetail = new OrderDetail();}
+        if (orderDetail == null ){orderDetail = new OrderDetailQueryBean();}
         if (offset == null || offset < 1 ){
            offset = 1;
         }
@@ -344,8 +350,11 @@ public class OrderController {
         pageBean.setTotalCount(totalCount);
         pageBean.setTotalPage(totalCount/limit);
         Map<String,Object> conditions = new HashMap<String,Object>();
-        if (orderDetail.getCreateTime() != null ){
-            conditions.put("time",orderDetail.getCreateTime());
+        if (orderDetail.getStartDate() != null ){
+            conditions.put("startDate",orderDetail.getStartDate());
+        }
+        if(orderDetail.getEndDate()!=null){
+            conditions.put("endDate",orderDetail.getEndDate());
         }
         if (!StringUtils.isEmpty(orderDetail.getSubject())) {
             conditions.put("subject",orderDetail.getSubject());
@@ -355,13 +364,13 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/activity/download")
-    public String activityDownload(@ModelAttribute OrderDetail detail, HttpServletResponse response) {
+    public String activityDownload(@ModelAttribute OrderDetailQueryBean detail, HttpServletResponse response) {
         List<OrderDetail> result = null;
         List<Map<String,Object>> list = new ArrayList<Map<String, Object>>();
         if (detail == null ){
-            detail = new OrderDetail();
+            detail = new OrderDetailQueryBean();
         }
-        detail.setIsActivity(1);
+        detail.setIsActivity(true);
         result = orderDetailService.listOrderDetails(detail,0,10000);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         for (OrderDetail orderDetail : result){

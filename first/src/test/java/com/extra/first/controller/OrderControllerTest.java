@@ -1,6 +1,7 @@
 package com.extra.first.controller;
 
 import com.extra.first.dto.BaseResult;
+import com.extra.first.model.OrderDetailQueryBean;
 import com.extra.first.pojo.OrderDetail;
 import com.extra.first.pojo.PageBean;
 import org.junit.Before;
@@ -82,9 +83,9 @@ public class OrderControllerTest {
     @Ignore
     @Test
     public void listOrder() throws Exception {
-        OrderDetail detail = new OrderDetail();
+        OrderDetailQueryBean detail = new OrderDetailQueryBean();
 //        detail.setSubject("大迈X5双11专题");
-        detail.setIsActivity(1);
+        detail.setIsActivity(true);
         BaseResult<PageBean<OrderDetail>> page = orderController.listOrder(detail,0,5);
         logger.info(page.getData().getData().size()+"");
         logger.info(page.getData().getConditions().get("subject").toString());

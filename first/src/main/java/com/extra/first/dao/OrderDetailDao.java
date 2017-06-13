@@ -1,5 +1,6 @@
 package com.extra.first.dao;
 
+import com.extra.first.model.OrderDetailQueryBean;
 import com.extra.first.pojo.OrderDetail;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.dao.DataAccessException;
@@ -26,8 +27,8 @@ public interface OrderDetailDao {
      * @param limit
      * @return
      */
-    List<OrderDetail> listOrderDetails(@Param("detail") OrderDetail detail,@Param("offset") int offset,@Param("limit") int limit) throws DataAccessException;
+    List<OrderDetail> listOrderDetails(@Param("detail") OrderDetailQueryBean detail, @Param("offset") int offset, @Param("limit") int limit) throws DataAccessException;
 
-    Map<String,Object> countOrderDetails(@Param("detail")OrderDetail detail);
+    Map<String,Object> countOrderDetails(@Param("detail")OrderDetailQueryBean detail);
 
 }

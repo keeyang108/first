@@ -1,5 +1,6 @@
 package com.extra.first.dao;
 
+import com.extra.first.model.OrderDetailQueryBean;
 import com.extra.first.pojo.OrderDetail;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -10,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -45,7 +48,11 @@ public class OrderDetailDaoTest {
 
     @Test
     public void listOrderDetails() throws Exception {
-        List<OrderDetail> details = orderDetailDao.listOrderDetails(new OrderDetail(),0,10);
+        OrderDetailQueryBean detailQueryBean = new OrderDetailQueryBean();
+        detailQueryBean.setIsActivity(true);
+        detailQueryBean.setStartDate(new Date());
+        detailQueryBean.setEndDate(new Date());
+        List<OrderDetail> details = orderDetailDao.listOrderDetails(detailQueryBean,0,10);
         for (OrderDetail detail : details){
             logger.info(detail.toString());
         }

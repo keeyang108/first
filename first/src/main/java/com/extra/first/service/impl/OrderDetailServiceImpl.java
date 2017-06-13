@@ -1,6 +1,7 @@
 package com.extra.first.service.impl;
 
 import com.extra.first.dao.OrderDetailDao;
+import com.extra.first.model.OrderDetailQueryBean;
 import com.extra.first.pojo.OrderDetail;
 import com.extra.first.service.OrderDetailService;
 import org.slf4j.Logger;
@@ -25,11 +26,11 @@ public class OrderDetailServiceImpl implements OrderDetailService {
         return orderDetailDao.insertOrder(detail);
     }
 
-    public List<OrderDetail> listOrderDetails(OrderDetail detail, int offset, int limit) {
+    public List<OrderDetail> listOrderDetails(OrderDetailQueryBean detail, int offset, int limit) {
         return orderDetailDao.listOrderDetails(detail,offset,limit);
     }
 
-    public int countOrderDetails(OrderDetail detail) {
+    public int countOrderDetails(OrderDetailQueryBean detail) {
         Map<String,Object> result = orderDetailDao.countOrderDetails(detail);
         return Integer.parseInt(result.get("totalCount").toString());
     }

@@ -58,7 +58,7 @@ public class ExcelUtil {
       }
 
       //设置每行每列的值
-      for ( int i = 1;i<data.size();i++){
+      for ( int i = 1;i<=data.size();i++){
          HSSFRow row1 = sheet.createRow((short)i);
          for ( int j = 0;j<keys.length;j++){
             HSSFCell cell = row1.createCell(j);

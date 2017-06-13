@@ -10,45 +10,39 @@
         values(#{order.name},#{order.sex},#{order.mobile},#{order.province},#{order.city},#{order.agentName},#{order.agentCode},#{order.carType},#{order.carTypeCode},#{order.mediaName},#{order.terminal},now(),#{order.subject},#{order.isActivity},#{order.mediaUrl});
     </insert>
 
-    <select id="listOrderDetails" resultType="com.extra.first.pojo.OrderDetail">
+    <select id="listOrderDetails" parameterType="com.extra.first.model.OrderDetailQueryBean" resultType="com.extra.first.pojo.OrderDetail">
         select
             id, name,sex, mobile,province,city,agentName,agentCode,carType,carTypeCode,mediaName,mediaUrl,terminal,subject,date_format(create_time,'%Y-%m-%d %T') createTime
         from t_order_detail
-        <where>
-            <if test="detail.createTime != null ">
-                datediff(create_time,#{detail.createTime}) = 0
-            </if>
-            <if test="detail.subject !=null">
-                and subject=#{detail.subject}
-            </if>
-            <if test="detail.isActivity==1">
-                and is_activity=1
-            </if>
-            <if test="detail.isActivity==0">
-                and is_activity=0
-            </if>
-        </where>
+        <include refid="ORDER_LIST_WHERE" ></include>
         order by create_time desc
         limit #{offset},#{limit}
     </select>
 
-    <select id="countOrderDetails" resultType="java.util.Map">
+    <select id="countOrderDetails" parameterType="com.extra.first.model.OrderDetailQueryBean"  resultType="java.util.Map">
         select
         COUNT(*) totalCount
         from t_order_detail
+        <include refid="ORDER_LIST_WHERE" ></include>
+    </select>
+
+    <sql id="ORDER_LIST_WHERE">
         <where>
-            <if test="detail.createTime != null ">
-                datediff(create_time,#{detail.createTime})=0
+            <if test="detail.startDate != null ">
+                create_time >= #{detail.startDate}
+            </if>
+            <if test="detail.endDate != null ">
+                and create_time &lt;= #{detail.endDate}
             </if>
             <if test="detail.subject !=null">
-               and subject=#{detail.subject}
+                and subject=#{detail.subject}
             </if>
-            <if test="detail.isActivity==1">
+            <if test="detail.isActivity">
                 and is_activity=1
             </if>
-            <if test="detail.isActivity==0">
+            <if test="!detail.isActivity">
                 and is_activity=0
             </if>
         </where>
-    </select>
+    </sql>
 </mapper>
