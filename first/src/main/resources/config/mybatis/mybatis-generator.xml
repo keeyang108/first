@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="adtables">
+
+        <property name="javaFileEncoding" value="UTF-8"/>
+
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>
+
+
+        <jdbcConnection driverClass="${jdbc.driver}" connectionURL="${jdbc.url}" userId="${jdbc.userName}" password="${jdbc.password}"/>
+        
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.extra.first.model" targetProject="MAVEN">
+            <property name="trimString" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mapper" targetProject="MAVEN"/>
+
+        <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="com.extra.first.dao" targetProject="MAVEN"/>
+
+        <table tableName="t_order_detail">
+            <property name="domainObjectName" value="OrderDetail"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+    </context>
+</generatorConfiguration>

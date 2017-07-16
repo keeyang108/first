@@ -2,8 +2,13 @@ package com.extra.first.controller;
 
 import com.extra.first.dto.BaseResult;
 import com.extra.first.model.OrderDetailQueryBean;
-import com.extra.first.pojo.*;
-import com.extra.first.service.*;
+import com.extra.first.pojo.Agency;
+import com.extra.first.pojo.OrderDetail;
+import com.extra.first.pojo.PageBean;
+import com.extra.first.pojo.Province;
+import com.extra.first.service.AgencyService;
+import com.extra.first.service.OrderDetailService;
+import com.extra.first.service.ProvinceService;
 import com.extra.first.util.ExcelUtil;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.slf4j.Logger;
@@ -35,22 +40,16 @@ import java.util.Map;
 @RequestMapping("/front/order")
 public class OrderController {
     Logger logger = LoggerFactory.getLogger(OrderController.class);
-    @Autowired
-    private OrderService orderService;
+
     @Autowired
     private ProvinceService provinceService;
-    @Autowired
-    private CityService cityService;
+
     @Autowired
     private AgencyService agencyService;
-    @Autowired
-    private CarService carService;
+
     @Autowired
     private OrderDetailService orderDetailService;
-    @Autowired
-    private VisitRecordService visitRecordService;
-
-
+    
     @RequestMapping(value = "/append",method = RequestMethod.GET,produces = "application/json;charset=utf-8")
     @ResponseBody
     public JSONPObject addOrderByJSONP(String callback,HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException{
@@ -150,24 +149,6 @@ public class OrderController {
         return new JSONPObject(callback,new BaseResult<Object>(true,"success"));
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST, produces = {"application/json;charset=utf-8"})
-    @ResponseBody
-    public BaseResult<Object> addOrder(@ModelAttribute Order order) {
-        if (StringUtils.isEmpty(order.getUserName())) {
-            return new BaseResult<Object>(false, "用户名不能为空");
-        }
-        if (StringUtils.isEmpty(order.getUserPhone())) {
-            return new BaseResult<Object>(false, "手机号不能为空");
-        }
-        if (!order.getUserPhone().matches("\\d{11}")) {
-            return new BaseResult<Object>(false, "请输入正确的手机号码");
-        }
-        int row = orderService.addOrder(order);
-        if (row < 1) {
-            return new BaseResult<Object>(false, "Internal Error");
-        }
-        return new BaseResult<Object>(true, null);
-    }
 
     @RequestMapping(value = "/listprovince", method = RequestMethod.GET, produces = {"application/json;charset=utf-8"})
     @ResponseBody
@@ -183,22 +164,6 @@ public class OrderController {
             return new BaseResult<List<Province>>(false, "Internal Error");
         }
         return new BaseResult<List<Province>>(true, provinces);
-    }
-
-    @RequestMapping(value = "/listcity", method = RequestMethod.GET, produces = {"application/json;charset=utf-8"})
-    @ResponseBody
-    public BaseResult<List> listCity(Integer provinceId, Integer offset, Integer limit) {
-        if (provinceId == null || provinceId <= 0) {
-            return new BaseResult<List>(false, "非法参数");
-        }
-        if (offset == null || offset <= 0) {
-            offset = 1;
-        }
-        if (limit == null || limit <= 0) {
-            limit = 10;
-        }
-        List<City> cities = cityService.queryCitiesByProvinceId(provinceId, (offset - 1) * limit, limit);
-        return new BaseResult<List>(true, cities);
     }
 
     @RequestMapping(value = "/listagency", method = RequestMethod.GET, produces = {"application/json;charset=utf-8"})
@@ -219,23 +184,7 @@ public class OrderController {
         }
         return new BaseResult<List<Agency>>(true, agencies);
     }
-
-    @RequestMapping(value = "/listcar", method = RequestMethod.GET, produces = {"application/json;charset=utf-8"})
-    @ResponseBody
-    public BaseResult<List<Car>> listCar(Integer currPage, Integer limit) {
-        if (currPage == null || currPage <= 0) {
-            currPage = 1;
-        }
-        if (limit == null || limit <= 0) {
-            limit = 10;
-        }
-        List<Car> cars = carService.listCar((currPage - 1) * limit, limit);
-        if (cars == null || cars.size() < 1) {
-            return new BaseResult<List<Car>>(false, "Internal Error");
-        }
-        return new BaseResult<List<Car>>(true, cars);
-    }
-
+    
     @RequestMapping(value = "/download")
     public String download(@ModelAttribute OrderDetailQueryBean detail, HttpServletResponse response) {
         List<OrderDetail> result = null;
@@ -300,25 +249,6 @@ public class OrderController {
             }
             return null;
         }
-    }
-
-    @RequestMapping(value = "/count")
-    public void countVisit(HttpServletRequest req,HttpServletResponse res){
-        res.setContentType("text/plain");
-        String callbackFunName = req.getParameter("callback");//得到js函数名称
-        String ip = req.getParameter("ip");
-
-        try {
-            if (StringUtils.isEmpty(ip)){
-                res.getWriter().write(callbackFunName + "([{ data:"+"ip为空"+"}])"); //返回jsonp数据
-            }
-            int row = visitRecordService.addVisitRecord(ip);
-            if (row > 0 )
-            res.getWriter().write(callbackFunName + "([{ data:"+"success"+"}])"); //返回jsonp数据
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.print(false);
     }
 
     @RequestMapping(value = "/list",method = RequestMethod.GET,produces = {"application/json;charset=utf-8"})
