@@ -30,4 +30,11 @@ public interface SupervisorDao {
      * @return
      */
     int updateSupervisor(@Param("supervisor") Supervisor supervisor);
+
+    /**
+     * select by userName
+     * @param userName
+     * @return
+     */
+    Supervisor selectUserByUserName(@Param("userName") String userName);
 }

@@ -22,4 +22,9 @@
         select id,supervisor_name,password  from t_supervisor where supervisor_name=#{supervisor.supervisorName}
         and password=#{supervisor.password};
     </select>
+
+    <select id="selectUserByUserName" resultType="com.extra.first.pojo.Supervisor">
+        select * from t_supervisor where supervisor_name = #{userName}
+    </select>
+    
 </mapper>

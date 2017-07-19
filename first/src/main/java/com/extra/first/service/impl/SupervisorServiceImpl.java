@@ -17,6 +17,7 @@ import java.util.Map;
 public class SupervisorServiceImpl implements SupervisorService {
 
     Logger logger = LoggerFactory.getLogger(SupervisorServiceImpl.class);
+    
     @Autowired
     private SupervisorDao supervisorDao;
 
@@ -26,5 +27,9 @@ public class SupervisorServiceImpl implements SupervisorService {
 
     public Map<String, Object> checkUser(Supervisor supervisor) {
         return supervisorDao.checkUser(supervisor);
+    }
+
+    public Supervisor selectUserByUserName(String userName) {
+        return supervisorDao.selectUserByUserName(userName);
     }
 }

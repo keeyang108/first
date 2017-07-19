@@ -9,7 +9,22 @@ import java.util.Map;
  */
 public interface SupervisorService {
 
+    /**
+     * add user
+     */
     int addSupervisor(Supervisor supervisor);
 
+    /**
+     * check if is exists;
+     * @param supervisor
+     * @return
+     */
     Map<String, Object> checkUser(Supervisor supervisor);
+
+    /**
+     * select by userName
+     * @param userName
+     * @return
+     */
+    Supervisor selectUserByUserName(String userName);
 }

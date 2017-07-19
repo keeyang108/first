@@ -3,6 +3,8 @@ package com.extra.first.controller;
 import com.extra.first.dto.BaseResult;
 import com.extra.first.pojo.Supervisor;
 import com.extra.first.service.SupervisorService;
+import com.extra.first.util.JwtTokenManagement;
+import com.extra.first.util.JwtUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -27,8 +30,12 @@ import java.util.Map;
 public class SupervisorController {
 
     private final static Logger logger = LoggerFactory.getLogger(SupervisorController.class);
+
     @Autowired
     private SupervisorService supervisorService;
+
+    @Autowired
+    private JwtTokenManagement jwtTokenUtils;
 
     @RequestMapping(value = "/user/add",method = RequestMethod.POST,produces = {"application/json;charset=utf-8"})
     @ResponseBody
@@ -79,7 +86,7 @@ public class SupervisorController {
 
     @RequestMapping(value = "/logining",method = RequestMethod.POST,produces = {"application/json;charset=utf-8"})
     @ResponseBody
-    public BaseResult<Object> login(String userName, String password, HttpServletRequest request){
+    public BaseResult<Object> login(String userName, String password, HttpServletRequest request, HttpServletResponse response){
         if (StringUtils.isEmpty(userName)){
             return new BaseResult<Object>(false,"请输入用户名");
         }
@@ -93,8 +100,8 @@ public class SupervisorController {
         if (result == null ){
             return new BaseResult<Object>(false,"用户名或密码错误");
         }
-        request.getSession().setAttribute("user",userName);
-        request.getSession().setMaxInactiveInterval(1800);
+        String token = jwtTokenUtils.generateToken(supervisor);
+        JwtUtils.setCookie(request,response,token);
         return new BaseResult<Object>(true,"success");
     }
 
