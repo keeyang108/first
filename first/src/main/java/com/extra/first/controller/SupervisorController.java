@@ -5,6 +5,10 @@ import com.extra.first.pojo.Supervisor;
 import com.extra.first.service.SupervisorService;
 import com.extra.first.util.JwtTokenManagement;
 import com.extra.first.util.JwtUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +17,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -25,6 +30,7 @@ import java.util.Map;
 /**
  * Created by Kee on 2016/10/30.
  */
+@Api(value = "Supervisor",description = "Supervisor",tags = {"Supervisor"})
 @Controller
 @RequestMapping("/supervisor")
 public class SupervisorController {
@@ -34,7 +40,6 @@ public class SupervisorController {
     @Autowired
     private SupervisorService supervisorService;
 
-    @Autowired
     private JwtTokenManagement jwtTokenUtils;
 
     @RequestMapping(value = "/user/add",method = RequestMethod.POST,produces = {"application/json;charset=utf-8"})
@@ -83,7 +88,11 @@ public class SupervisorController {
         return "/supervisor/home";
     }
 
-
+    @ApiOperation("user login")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "userName",value = "用户名",dataType = "string",paramType = "query"),
+            @ApiImplicitParam(name = "password",value = "密码",dataType = "string",paramType = "query")
+    })
     @RequestMapping(value = "/logining",method = RequestMethod.POST,produces = {"application/json;charset=utf-8"})
     @ResponseBody
     public BaseResult<Object> login(String userName, String password, HttpServletRequest request, HttpServletResponse response){
@@ -105,10 +114,23 @@ public class SupervisorController {
         return new BaseResult<Object>(true,"success");
     }
 
+    @ApiOperation("user loginout")
     @RequestMapping(value = "/loginout",method = RequestMethod.PUT)
-    public String loginout(HttpServletRequest request){
-        HttpSession session = request.getSession();
-        session.removeAttribute("user");
+    public String loginout(HttpServletRequest request,HttpServletResponse response){
+        cleanCookie(request,response);
         return "/supervisor/login";
+    }
+
+    private void cleanCookie(HttpServletRequest request, HttpServletResponse response) {
+        Cookie[] cookies = request.getCookies();
+        if (null != cookies && cookies.length > 0) {
+            for (int i = 0; i < cookies.length; i++) {
+                cookies[i].setDomain(request.getServerName());
+                cookies[i].setValue(null);
+                cookies[i].setPath("/");
+                cookies[i].setMaxAge(0);
+                response.addCookie(cookies[i]);
+            }
+        }
     }
 }

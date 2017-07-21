@@ -3,17 +3,16 @@
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
+    <!--<properties resource="" url=""/>-->
     <context id="adtables">
-
         <property name="javaFileEncoding" value="UTF-8"/>
 
         <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>
+        <plugin type="com.extra.first.plugin.SwaggerApiModelPlugin"></plugin>
 
-
-        <!--<jdbcConnection driverClass="${jdbc.driver}" connectionURL="${jdbc.url}" userId="${jdbc.userName}" password="${jdbc.password}"/>-->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/ad?characterEncoding=UTF-8" userId="root" password="garfield.,"/>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:9527/ad?characterEncoding=UTF-8" userId="root" password="garfield.,"/>
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
@@ -27,7 +26,7 @@
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
-        <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="com.extra.first.mapper" targetProject="MAVEN"/>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.extra.first.mapper" targetProject="MAVEN"/>
 
         <table tableName="t_order_detail" domainObjectName="OrderDetail" mapperName="OrderDetailMapper">
           <generatedKey column="id" sqlStatement="JDBC"/>

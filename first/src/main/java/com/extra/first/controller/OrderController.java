@@ -149,42 +149,6 @@ public class OrderController {
         return new JSONPObject(callback,new BaseResult<Object>(true,"success"));
     }
 
-
-    @RequestMapping(value = "/listprovince", method = RequestMethod.GET, produces = {"application/json;charset=utf-8"})
-    @ResponseBody
-    public BaseResult<List<Province>> listProvince(Integer offset, Integer limit) {
-        if (offset == null || offset <= 0) {
-            offset = 1;
-        }
-        if (limit == null || limit <= 0) {
-            limit = 10;
-        }
-        List<Province> provinces = provinceService.listProvince((offset - 1) * limit, limit);
-        if (provinces == null || provinces.size() < 1) {
-            return new BaseResult<List<Province>>(false, "Internal Error");
-        }
-        return new BaseResult<List<Province>>(true, provinces);
-    }
-
-    @RequestMapping(value = "/listagency", method = RequestMethod.GET, produces = {"application/json;charset=utf-8"})
-    @ResponseBody
-    public BaseResult<List<Agency>> listAgency(Integer cityId, Integer offset, Integer limit) {
-        if (cityId == null || cityId <= 0) {
-            return new BaseResult<List<Agency>>(false, "非法参数");
-        }
-        if (offset == null || offset <= 0) {
-            offset = 1;
-        }
-        if (limit == null || limit <= 0) {
-            limit = 10;
-        }
-        List<Agency> agencies = agencyService.queryAgenciesByCityId(cityId, (offset - 1) * limit, limit);
-        if (agencies == null || agencies.size() < 1) {
-            return new BaseResult<List<Agency>>(false, "Internal Error");
-        }
-        return new BaseResult<List<Agency>>(true, agencies);
-    }
-    
     @RequestMapping(value = "/download")
     public String download(@ModelAttribute OrderDetailQueryBean detail, HttpServletResponse response) {
         List<OrderDetail> result = null;
