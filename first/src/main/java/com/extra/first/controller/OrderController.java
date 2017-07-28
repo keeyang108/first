@@ -39,13 +39,8 @@ import java.util.Map;
 @Controller
 @RequestMapping("/front/order")
 public class OrderController {
-    Logger logger = LoggerFactory.getLogger(OrderController.class);
 
-    @Autowired
-    private ProvinceService provinceService;
-
-    @Autowired
-    private AgencyService agencyService;
+    private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
     @Autowired
     private OrderDetailService orderDetailService;

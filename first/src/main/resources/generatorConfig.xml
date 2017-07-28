@@ -10,7 +10,7 @@
         <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>
-        <plugin type="com.extra.first.plugin.SwaggerApiModelPlugin"></plugin>
+        <!--<plugin type="com.extra.first.plugin.SwaggerApiModelPlugin"></plugin>-->
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:9527/ad?characterEncoding=UTF-8" userId="root" password="garfield.,"/>
         <javaTypeResolver>

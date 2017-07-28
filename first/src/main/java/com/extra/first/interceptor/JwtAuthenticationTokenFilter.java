@@ -21,8 +21,8 @@ public class JwtAuthenticationTokenFilter implements Filter {
 
     private static final Logger log = LoggerFactory.getLogger(JwtAuthenticationTokenFilter.class);
     protected static final String LOGIN_URI = "/supervisor/logining";
-    protected static final String LOGOUT_URI = "/supervisor/logout";
     protected static final String ADDORDER_URI = "/front/order/append";
+    protected static final String SWAGGER_URI="/swagger-ui.html";
 
     public static final String CK_TOKEN = "token";
 
@@ -42,7 +42,7 @@ public class JwtAuthenticationTokenFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
         String token = JwtUtils.getTokenFromRequest(httpRequest, this.tokenHeader);
         String uri = httpRequest.getRequestURI();
-        if ((!LOGIN_URI.equals(uri) || !ADDORDER_URI.equals(uri)) && StringUtils.isNotBlank(token)) {
+        if ((!LOGIN_URI.equals(uri) && !ADDORDER_URI.equals(uri) && !SWAGGER_URI.equals(uri)) && StringUtils.isNotBlank(token)) {
             //取出userName,查找数据库是否存在，然后重新生成token，看是否一致,如果一致则可以认为已经登陆
             String userName = jwtTokenUtil.getUsernameFromToken(token);
             if (null == userName) {
