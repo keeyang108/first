@@ -2,13 +2,9 @@ package com.extra.first.controller;
 
 import com.extra.first.dto.BaseResult;
 import com.extra.first.model.OrderDetailQueryBean;
-import com.extra.first.pojo.Agency;
 import com.extra.first.pojo.OrderDetail;
 import com.extra.first.pojo.PageBean;
-import com.extra.first.pojo.Province;
-import com.extra.first.service.AgencyService;
 import com.extra.first.service.OrderDetailService;
-import com.extra.first.service.ProvinceService;
 import com.extra.first.util.ExcelUtil;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.slf4j.Logger;
