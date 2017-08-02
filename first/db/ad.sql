@@ -85,3 +85,4 @@ CREATE TABLE `dt_area` (
   KEY `F13` (`status`) USING BTREE,
   KEY `F12` (`jian_pin`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='中国行政区划';
+
