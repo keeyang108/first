@@ -9,7 +9,7 @@ CREATE TABLE `t_supervisor` (
   `email` varchar(50) DEFAULT NULL comment 'email',
   `head_image_path` varchar(100) DEFAULT NULL COMMENT '头像地址',
   `status` enum('NORMAL','LOCKED','DISABLE') DEFAULT 'NORMAL' COMMENT '正常/锁住/停用',
-  `create_time` datetime DEFAULT NULL comment '创建时间',
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP comment '创建时间',
 	`update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
   PRIMARY KEY (`id`),
   KEY `index_supervisor_phone` (`supervisor_phone`),
@@ -18,13 +18,13 @@ CREATE TABLE `t_supervisor` (
 
 DROP TABLE IF EXISTS t_subject;
 CREATE TABLE `t_subject` (
-  `id` int(11) NOT NULL COMMENT 'id',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id' ,
   `subject_name` varchar(50) DEFAULT NULL COMMENT '专题名字',
   `url` varchar(50) DEFAULT NULL COMMENT '专题的url',
   `description` varchar(100) DEFAULT NULL COMMENT '专题描述',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `status` tinyint(4) DEFAULT NULL COMMENT '状态：0-上线中 1-下架 -1：审核中',
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP comment '创建时间',
+	`update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+  `status` tinyint(4) DEFAULT '0' COMMENT '状态：0-上线中 1-下架 -1：审核中',
   `view_count` bigint(20) DEFAULT NULL COMMENT '浏览量',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='专题表';
@@ -36,7 +36,7 @@ CREATE TABLE `t_dealer` (
 	`area_id` int(11) DEFAULT NULL COMMENT '区域id,对应dt_area表id',
   `agency_address` varchar(200) DEFAULT NULL comment '地址',
   `connect_tel` varchar(45) DEFAULT NULL COMMENT '联系电话',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP comment '创建时间',
 	`update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
@@ -57,7 +57,7 @@ CREATE TABLE `t_order_detail` (
   `mediaUrl` varchar(255) DEFAULT NULL COMMENT '媒体url',
   `subject` varchar(255) DEFAULT NULL COMMENT '专题主题',
   `terminal` varchar(10) DEFAULT NULL COMMENT '途径',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP comment '创建时间',
   `is_activity` tinyint(4) DEFAULT '0' COMMENT '是否活动专题',
   PRIMARY KEY (`id`),
   KEY `INDEX_PROVINCE` (`province`),
@@ -65,7 +65,7 @@ CREATE TABLE `t_order_detail` (
   KEY `index_agent` (`agentName`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
-
+DROP TABLE IF EXISTS dt_area;
 CREATE TABLE `dt_area` (
   `id` mediumint(6) unsigned NOT NULL COMMENT '区域id,6位数字',
   `province_id` tinyint(2) unsigned NOT NULL COMMENT '省级ID',

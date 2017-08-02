@@ -1,7 +1,8 @@
 package com.extra.first.controller;
 
 import com.extra.first.dto.BaseResult;
-import com.extra.first.pojo.Supervisor;
+import com.extra.first.model.ResponseBuilder;
+import com.extra.first.model.Supervisor;
 import com.extra.first.service.SupervisorService;
 import com.extra.first.util.JwtTokenManagement;
 import com.extra.first.util.JwtUtils;
@@ -31,7 +32,7 @@ import java.util.Map;
  * Created by Kee on 2016/10/30.
  */
 @Api(value = "Supervisor",description = "Supervisor",tags = {"Supervisor"})
-@Controller
+@RestController
 @RequestMapping("/supervisor")
 public class SupervisorController {
 
@@ -42,50 +43,24 @@ public class SupervisorController {
 
     private JwtTokenManagement jwtTokenUtils;
 
-    @RequestMapping(value = "/user/add",method = RequestMethod.POST,produces = {"application/json;charset=utf-8"})
+    @RequestMapping(value = "/add",method = RequestMethod.POST,produces = {"application/json;charset=utf-8"})
     @ResponseBody
-    public BaseResult<Object> addSupervisor(@ModelAttribute Supervisor supervisor, HttpServletRequest request, @RequestParam("textfile")CommonsMultipartFile upfile) throws IOException {
-
-        String path = request.getRealPath("/WEB-INF/upload");
-        File file = null;
-        if (!upfile.isEmpty()){
-            file =  new File(path,"head_"+upfile.getOriginalFilename());
-            byte[] bytes = upfile.getBytes();
-            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
-            bos.write(bytes);
-            bos.close();
-        }
+    public BaseResult<String> addSupervisor(@RequestBody Supervisor supervisor) throws IOException {
 
         if (StringUtils.isEmpty(supervisor.getSupervisorName())){
-            return new BaseResult<Object>(false,"用户名不能为空");
+            return ResponseBuilder.error("用户名不能为空");
         }
         if (StringUtils.isEmpty(supervisor.getSupervisorPhone()) || !supervisor.getSupervisorPhone().matches("\\d{11}"))   {
-             return new BaseResult<Object>(false,"请输入正确格式的手机号码");
+             return ResponseBuilder.error("请输入正确格式的手机号码");
         }
         if (StringUtils.isEmpty(supervisor.getPassword())){
-            return new BaseResult<Object>(false,"请输入密码");
+            return ResponseBuilder.error("请输入密码");
         }
-        if (file != null){
-            System.out.println(file.getAbsolutePath());
-            System.out.println(file.getPath());
-            System.out.println(file.getName());
-            supervisor.setHeadImagePath(file.getPath());
-        }
-
         int row = supervisorService.addSupervisor(supervisor);
         if (row < 1 ){
-            return new BaseResult<Object>(false,"Internal Error");
+            return ResponseBuilder.error("Internal Error");
         }
-        return new BaseResult<Object>(true,"添加成功");
-    }
-
-    @RequestMapping(value = "",method = RequestMethod.GET)
-    public String login(HttpServletRequest request){
-        HttpSession session = request.getSession();
-        if (session.getAttribute("user") ==  null ){
-            return "/supervisor/login";
-        }
-        return "/supervisor/home";
+        return ResponseBuilder.success("success");
     }
 
     @ApiOperation("user login")
@@ -93,7 +68,7 @@ public class SupervisorController {
             @ApiImplicitParam(name = "userName",value = "用户名",dataType = "string",paramType = "query"),
             @ApiImplicitParam(name = "password",value = "密码",dataType = "string",paramType = "query")
     })
-    @RequestMapping(value = "/logining",method = RequestMethod.POST,produces = {"application/json;charset=utf-8"})
+    @RequestMapping(value = "/login",method = RequestMethod.POST,produces = {"application/json;charset=utf-8"})
     @ResponseBody
     public BaseResult<Object> login(String userName, String password, HttpServletRequest request, HttpServletResponse response){
         if (StringUtils.isEmpty(userName)){
@@ -105,7 +80,7 @@ public class SupervisorController {
         Supervisor supervisor = new Supervisor();
         supervisor.setSupervisorName(userName);
         supervisor.setPassword(password);
-        Map<String,Object> result = supervisorService.checkUser(supervisor);
+        Supervisor result = supervisorService.checkUser(supervisor);
         if (result == null ){
             return new BaseResult<Object>(false,"用户名或密码错误");
         }
@@ -114,8 +89,8 @@ public class SupervisorController {
         return new BaseResult<Object>(true,"success");
     }
 
-    @ApiOperation("user loginout")
-    @RequestMapping(value = "/loginout",method = RequestMethod.PUT)
+    @ApiOperation("user logout")
+    @RequestMapping(value = "/logout",method = RequestMethod.PUT)
     public String loginout(HttpServletRequest request,HttpServletResponse response){
         cleanCookie(request,response);
         return "/supervisor/login";

@@ -1,6 +1,6 @@
 package com.extra.first.interceptor;
 
-import com.extra.first.pojo.Supervisor;
+import com.extra.first.model.Supervisor;
 import com.extra.first.service.SupervisorService;
 import com.extra.first.util.JsonUtils;
 import com.extra.first.util.JwtTokenManagement;

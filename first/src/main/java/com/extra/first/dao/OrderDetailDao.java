@@ -1,5 +1,6 @@
 package com.extra.first.dao;
 
+import com.extra.first.mapper.OrderDetailMapper;
 import com.extra.first.model.OrderDetailQueryBean;
 import com.extra.first.pojo.OrderDetail;
 import org.apache.ibatis.annotations.Param;
@@ -11,7 +12,7 @@ import java.util.Map;
 /**
  * Created by Kee on 2016/11/8.
  */
-public interface OrderDetailDao {
+public interface OrderDetailDao extends OrderDetailMapper {
 
     /**
      * 添加订单

@@ -1,6 +1,6 @@
 package com.extra.first.service.impl;
 
-import com.extra.first.mapper.SubjectMapper;
+import com.extra.first.dao.SubjectDao;
 import com.extra.first.model.Subject;
 import com.extra.first.model.SubjectExample;
 import com.extra.first.model.SubjectQueryBean;
@@ -18,7 +18,7 @@ import java.util.List;
 public class SubjectServiceImpl implements SubjectService {
 
     @Autowired
-    private SubjectMapper subjectMapper;
+    private SubjectDao subjectMapper;
 
     public boolean addSubject(Subject subject) {
         return subjectMapper.insertSelective(subject) > 0;
@@ -31,12 +31,21 @@ public class SubjectServiceImpl implements SubjectService {
     public List<Subject> listSubject(SubjectQueryBean queryBean) {
         SubjectExample example = new SubjectExample();
         SubjectExample.Criteria criteria = example.createCriteria();
-        if (null  != queryBean){
-//            if (queryBean)
+        if (null != queryBean) {
+            if (null != queryBean.getBeginDate()) {
+                criteria.andCreateTimeGreaterThanOrEqualTo(queryBean.getBeginDate());
+            }
+            if (null != queryBean.getEndDate()){
+                criteria.andCreateTimeLessThan(queryBean.getEndDate());
+            }
+            if (null != queryBean.getStatus()){
+                criteria.andStatusEqualTo(queryBean.getStatus().byteValue());
+            }
+            if (null != queryBean.getSubjectName()){
+                criteria.andSubjectNameLike(queryBean.getSubjectName());
+            }
         }
-
-
-        return null;
+        return subjectMapper.selectByExample(example);
     }
 
     public boolean deleteByPK(Integer subjectId) {

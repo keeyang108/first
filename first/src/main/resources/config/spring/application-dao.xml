@@ -20,8 +20,8 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="configLocation" value="classpath:config/mybatis/mybatis-config.xml"/>
-        <property name="typeAliasesPackage" value="com.extra.first.pojo"/>
-        <property name="mapperLocations" value="classpath*:"/>
+        <!--<property name="typeAliasesPackage" value="com.extra.first.pojo"/>-->
+        <property name="mapperLocations" value="classpath*:/com/extra/first/mapping/*.xml"/>
     </bean>
 
     <!--配置扫描Dao接口包，动态实现Dao接口,注入到spring容器中-->

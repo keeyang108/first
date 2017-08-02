@@ -1,6 +1,6 @@
 package com.extra.first.util;
 
-import com.extra.first.pojo.Supervisor;
+import com.extra.first.model.Supervisor;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

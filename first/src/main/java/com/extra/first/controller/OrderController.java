@@ -43,7 +43,7 @@ public class OrderController {
     
     @RequestMapping(value = "/append",method = RequestMethod.GET,produces = "application/json;charset=utf-8")
     @ResponseBody
-    public JSONPObject addOrderByJSONP(String callback,HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException{
+    public JSONPObject addOrderByJSONP(String callback,HttpServletRequest request) throws UnsupportedEncodingException{
         JSONPObject json = null;
         request.setCharacterEncoding("UTF-8");
         String name = request.getParameter("name");

@@ -19,6 +19,7 @@ import java.util.Map;
 public class OrderDetailServiceImpl implements OrderDetailService {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderDetailServiceImpl.class);
+
     @Autowired
     private OrderDetailDao orderDetailDao;
 

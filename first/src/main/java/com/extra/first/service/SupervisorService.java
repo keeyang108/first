@@ -1,6 +1,6 @@
 package com.extra.first.service;
 
-import com.extra.first.pojo.Supervisor;
+import com.extra.first.model.Supervisor;
 
 import java.util.Map;
 
@@ -19,7 +19,7 @@ public interface SupervisorService {
      * @param supervisor
      * @return
      */
-    Map<String, Object> checkUser(Supervisor supervisor);
+    Supervisor checkUser(Supervisor supervisor);
 
     /**
      * select by userName

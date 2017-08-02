@@ -1,6 +1,7 @@
 package com.extra.first.controller;
 
 import com.extra.first.dto.BaseResult;
+import com.extra.first.model.ResponseBuilder;
 import com.extra.first.model.Subject;
 import com.extra.first.model.SubjectQueryBean;
 import com.extra.first.service.SubjectService;
@@ -20,29 +21,29 @@ public class SubjectController {
     @Autowired
     private SubjectService subjectService;
 
-    @PostMapping("/add")
+    @RequestMapping(value = "/add",method = RequestMethod.POST,produces = {"application/json;charset=utf-8"})
     public BaseResult<Boolean> addSubject(@RequestBody Subject subject){
-        return new BaseResult<Boolean>(true,subjectService.addSubject(subject));
+        return ResponseBuilder.success(subjectService.addSubject(subject));
     }
 
-    @PostMapping("update")
+    @RequestMapping(value = "/update",method = RequestMethod.POST,produces = {"application/json;charset=utf-8"})
     public BaseResult<Boolean> updateSubject(@RequestBody Subject subject){
-        return new BaseResult<Boolean>(true,subjectService.updateSubjectByPKSelective(subject));
+        return ResponseBuilder.success(subjectService.updateSubjectByPKSelective(subject));
     }
 
-    @GetMapping("view")
+    @RequestMapping(value = "/view",method = RequestMethod.POST,produces = {"application/json;charset=utf-8"})
     public BaseResult<Subject> viewSubjectById(Integer id){
-        return new BaseResult<Subject>(true,subjectService.selectByPk(id));
+        return ResponseBuilder.success(subjectService.selectByPk(id));
     }
 
-    @DeleteMapping("del")
+    @RequestMapping(value = "/del",method = RequestMethod.POST,produces = {"application/json;charset=utf-8"})
     public BaseResult<Boolean> deleteByPK(Integer id){
-        return new BaseResult<Boolean>(true,subjectService.deleteByPK(id));
+        return ResponseBuilder.success(subjectService.deleteByPK(id));
     }
 
-    @GetMapping("list")
+    @RequestMapping(value = "/list",method = RequestMethod.POST,produces = {"application/json;charset=utf-8"})
     public BaseResult<List<Subject>> listSubject(@RequestBody SubjectQueryBean queryBean){
-        return new BaseResult<List<Subject>>(true,subjectService.listSubject(queryBean));
+        return ResponseBuilder.success(subjectService.listSubject(queryBean));
     }
 
 }

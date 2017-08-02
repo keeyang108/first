@@ -1,14 +1,16 @@
 package com.extra.first.service.impl;
 
 import com.extra.first.dao.SupervisorDao;
-import com.extra.first.pojo.Supervisor;
+import com.extra.first.mapper.SupervisorMapper;
+import com.extra.first.model.Supervisor;
+import com.extra.first.model.SupervisorExample;
 import com.extra.first.service.SupervisorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
+import java.util.List;
 
 /**
  * Created by Kee on 2016/10/30.
@@ -22,14 +24,26 @@ public class SupervisorServiceImpl implements SupervisorService {
     private SupervisorDao supervisorDao;
 
     public int addSupervisor(Supervisor supervisor) {
-        return supervisorDao.addSupervisor(supervisor);
+        return supervisorDao.insert(supervisor);
     }
 
-    public Map<String, Object> checkUser(Supervisor supervisor) {
-        return supervisorDao.checkUser(supervisor);
+    public Supervisor checkUser(Supervisor supervisor) {
+        SupervisorExample example = new SupervisorExample();
+        example.createCriteria().andSupervisorNameEqualTo(supervisor.getSupervisorName()).andPasswordEqualTo(supervisor.getPassword());
+        List<Supervisor>  result = supervisorDao.selectByExample(example);
+        if (null != result && result.size() > 0){
+            return result.get(0);
+        }
+        return null;
     }
 
     public Supervisor selectUserByUserName(String userName) {
-        return supervisorDao.selectUserByUserName(userName);
+        SupervisorExample example = new SupervisorExample();
+        example.createCriteria().andSupervisorNameEqualTo(userName);
+        List<Supervisor>  result = supervisorDao.selectByExample(example);
+        if (null != result && result.size() > 0){
+            return result.get(0);
+        }
+        return null;
     }
 }
